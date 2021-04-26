@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plank_me/presentation/on_boarding/ui/on_boarding_screen.dart';
 
 class PlankMe extends StatelessWidget {
   @override
@@ -9,7 +10,7 @@ class PlankMe extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: OnBoardingScreen(),
     );
   }
 }
