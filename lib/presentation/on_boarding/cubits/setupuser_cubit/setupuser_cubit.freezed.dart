@@ -31,6 +31,12 @@ class _$SetupuserStateTearOff {
   Failed failed() {
     return const Failed();
   }
+
+  GenderChanged genderChanged(UserType userType) {
+    return GenderChanged(
+      userType,
+    );
+  }
 }
 
 /// @nodoc
@@ -44,6 +50,7 @@ mixin _$SetupuserState {
     required TResult Function() loading,
     required TResult Function() success,
     required TResult Function() failed,
+    required TResult Function(UserType userType) genderChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,6 +59,7 @@ mixin _$SetupuserState {
     TResult Function()? loading,
     TResult Function()? success,
     TResult Function()? failed,
+    TResult Function(UserType userType)? genderChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,6 +69,7 @@ mixin _$SetupuserState {
     required TResult Function(Loading value) loading,
     required TResult Function(Success value) success,
     required TResult Function(Failed value) failed,
+    required TResult Function(GenderChanged value) genderChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +78,7 @@ mixin _$SetupuserState {
     TResult Function(Loading value)? loading,
     TResult Function(Success value)? success,
     TResult Function(Failed value)? failed,
+    TResult Function(GenderChanged value)? genderChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -132,6 +142,7 @@ class _$Initial implements Initial {
     required TResult Function() loading,
     required TResult Function() success,
     required TResult Function() failed,
+    required TResult Function(UserType userType) genderChanged,
   }) {
     return initial();
   }
@@ -143,6 +154,7 @@ class _$Initial implements Initial {
     TResult Function()? loading,
     TResult Function()? success,
     TResult Function()? failed,
+    TResult Function(UserType userType)? genderChanged,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -158,6 +170,7 @@ class _$Initial implements Initial {
     required TResult Function(Loading value) loading,
     required TResult Function(Success value) success,
     required TResult Function(Failed value) failed,
+    required TResult Function(GenderChanged value) genderChanged,
   }) {
     return initial(this);
   }
@@ -169,6 +182,7 @@ class _$Initial implements Initial {
     TResult Function(Loading value)? loading,
     TResult Function(Success value)? success,
     TResult Function(Failed value)? failed,
+    TResult Function(GenderChanged value)? genderChanged,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -223,6 +237,7 @@ class _$Loading implements Loading {
     required TResult Function() loading,
     required TResult Function() success,
     required TResult Function() failed,
+    required TResult Function(UserType userType) genderChanged,
   }) {
     return loading();
   }
@@ -234,6 +249,7 @@ class _$Loading implements Loading {
     TResult Function()? loading,
     TResult Function()? success,
     TResult Function()? failed,
+    TResult Function(UserType userType)? genderChanged,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -249,6 +265,7 @@ class _$Loading implements Loading {
     required TResult Function(Loading value) loading,
     required TResult Function(Success value) success,
     required TResult Function(Failed value) failed,
+    required TResult Function(GenderChanged value) genderChanged,
   }) {
     return loading(this);
   }
@@ -260,6 +277,7 @@ class _$Loading implements Loading {
     TResult Function(Loading value)? loading,
     TResult Function(Success value)? success,
     TResult Function(Failed value)? failed,
+    TResult Function(GenderChanged value)? genderChanged,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -314,6 +332,7 @@ class _$Success implements Success {
     required TResult Function() loading,
     required TResult Function() success,
     required TResult Function() failed,
+    required TResult Function(UserType userType) genderChanged,
   }) {
     return success();
   }
@@ -325,6 +344,7 @@ class _$Success implements Success {
     TResult Function()? loading,
     TResult Function()? success,
     TResult Function()? failed,
+    TResult Function(UserType userType)? genderChanged,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -340,6 +360,7 @@ class _$Success implements Success {
     required TResult Function(Loading value) loading,
     required TResult Function(Success value) success,
     required TResult Function(Failed value) failed,
+    required TResult Function(GenderChanged value) genderChanged,
   }) {
     return success(this);
   }
@@ -351,6 +372,7 @@ class _$Success implements Success {
     TResult Function(Loading value)? loading,
     TResult Function(Success value)? success,
     TResult Function(Failed value)? failed,
+    TResult Function(GenderChanged value)? genderChanged,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -405,6 +427,7 @@ class _$Failed implements Failed {
     required TResult Function() loading,
     required TResult Function() success,
     required TResult Function() failed,
+    required TResult Function(UserType userType) genderChanged,
   }) {
     return failed();
   }
@@ -416,6 +439,7 @@ class _$Failed implements Failed {
     TResult Function()? loading,
     TResult Function()? success,
     TResult Function()? failed,
+    TResult Function(UserType userType)? genderChanged,
     required TResult orElse(),
   }) {
     if (failed != null) {
@@ -431,6 +455,7 @@ class _$Failed implements Failed {
     required TResult Function(Loading value) loading,
     required TResult Function(Success value) success,
     required TResult Function(Failed value) failed,
+    required TResult Function(GenderChanged value) genderChanged,
   }) {
     return failed(this);
   }
@@ -442,6 +467,7 @@ class _$Failed implements Failed {
     TResult Function(Loading value)? loading,
     TResult Function(Success value)? success,
     TResult Function(Failed value)? failed,
+    TResult Function(GenderChanged value)? genderChanged,
     required TResult orElse(),
   }) {
     if (failed != null) {
@@ -453,4 +479,133 @@ class _$Failed implements Failed {
 
 abstract class Failed implements SetupuserState {
   const factory Failed() = _$Failed;
+}
+
+/// @nodoc
+abstract class $GenderChangedCopyWith<$Res> {
+  factory $GenderChangedCopyWith(
+          GenderChanged value, $Res Function(GenderChanged) then) =
+      _$GenderChangedCopyWithImpl<$Res>;
+  $Res call({UserType userType});
+}
+
+/// @nodoc
+class _$GenderChangedCopyWithImpl<$Res>
+    extends _$SetupuserStateCopyWithImpl<$Res>
+    implements $GenderChangedCopyWith<$Res> {
+  _$GenderChangedCopyWithImpl(
+      GenderChanged _value, $Res Function(GenderChanged) _then)
+      : super(_value, (v) => _then(v as GenderChanged));
+
+  @override
+  GenderChanged get _value => super._value as GenderChanged;
+
+  @override
+  $Res call({
+    Object? userType = freezed,
+  }) {
+    return _then(GenderChanged(
+      userType == freezed
+          ? _value.userType
+          : userType // ignore: cast_nullable_to_non_nullable
+              as UserType,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GenderChanged implements GenderChanged {
+  const _$GenderChanged(this.userType);
+
+  @override
+  final UserType userType;
+
+  @override
+  String toString() {
+    return 'SetupuserState.genderChanged(userType: $userType)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GenderChanged &&
+            (identical(other.userType, userType) ||
+                const DeepCollectionEquality()
+                    .equals(other.userType, userType)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userType);
+
+  @JsonKey(ignore: true)
+  @override
+  $GenderChangedCopyWith<GenderChanged> get copyWith =>
+      _$GenderChangedCopyWithImpl<GenderChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function() failed,
+    required TResult Function(UserType userType) genderChanged,
+  }) {
+    return genderChanged(userType);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function()? failed,
+    TResult Function(UserType userType)? genderChanged,
+    required TResult orElse(),
+  }) {
+    if (genderChanged != null) {
+      return genderChanged(userType);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Success value) success,
+    required TResult Function(Failed value) failed,
+    required TResult Function(GenderChanged value) genderChanged,
+  }) {
+    return genderChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? success,
+    TResult Function(Failed value)? failed,
+    TResult Function(GenderChanged value)? genderChanged,
+    required TResult orElse(),
+  }) {
+    if (genderChanged != null) {
+      return genderChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GenderChanged implements SetupuserState {
+  const factory GenderChanged(UserType userType) = _$GenderChanged;
+
+  UserType get userType => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GenderChangedCopyWith<GenderChanged> get copyWith =>
+      throw _privateConstructorUsedError;
 }

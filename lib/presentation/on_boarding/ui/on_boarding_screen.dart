@@ -9,7 +9,7 @@ class OnBoardingScreen extends StatelessWidget {
     return Scaffold(
           body: BlocProvider(
         create: (context) => SetupuserCubit(),
-        child: UserInfo(),
+        child: Center(child: UserInfo()),
       ),
     );
   }

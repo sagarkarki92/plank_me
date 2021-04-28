@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plank_me/presentation/on_boarding/cubits/setupuser_cubit/setupuser_cubit.dart';
-import 'package:plank_me/presentation/on_boarding/cubits/username_cubit/usernamefield_cubit.dart';
-import 'package:plank_me/presentation/on_boarding/ui/widgets/submit.dart';
-import 'package:plank_me/presentation/on_boarding/ui/widgets/user_name_field.dart';
+
+import '../../cubits/setupuser_cubit/setupuser_cubit.dart';
+import '../../cubits/username_cubit/usernamefield_cubit.dart';
+import 'gender_selection.dart';
+import 'submit.dart';
+import 'user_name_field.dart';
 
 class UserInfo extends StatelessWidget {
   @override
@@ -14,6 +16,7 @@ class UserInfo extends StatelessWidget {
       child: Column(
         children: [
           UsernameField(),
+          GenderSelection(),
           Submit(),
         ],
       ),

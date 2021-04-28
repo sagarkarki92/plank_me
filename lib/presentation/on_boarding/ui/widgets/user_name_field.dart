@@ -37,7 +37,7 @@ class _UsernameFieldState extends State<UsernameField> {
                   _buildField(trailing: const CircularProgressIndicator()),
               invalid: (String errorMessage) => _buildField(
                 trailing: const Icon(
-                  Icons.cancel_outlined,
+                  Icons.cancel_rounded,
                   color: Colors.red,
                 ),
                 color: Colors.red,
@@ -45,14 +45,14 @@ class _UsernameFieldState extends State<UsernameField> {
               ),
               userExist: (String label) => _buildField(
                   trailing: const Icon(
-                    Icons.cancel_presentation,
+                    Icons.close,
                     color: Colors.red,
                   ),
                   color: Colors.red,
                   label: label),
               userAvailable: (String label) => _buildField(
                   trailing: const Icon(
-                    Icons.event_available,
+                    Icons.done,
                     color: Colors.green,
                   ),
                   color: Colors.green,
