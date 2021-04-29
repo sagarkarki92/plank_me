@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:plank_me/app.dart';
 import 'package:plank_me/data/models/user.dart';
 import 'package:plank_me/presentation/app/app_service/base_cubit.dart';
 import 'package:plank_me/repositories/user_repository.dart';
+
+import '../../../screens.dart';
 
 part 'setupuser_state.dart';
 part 'setupuser_cubit.freezed.dart';
@@ -37,6 +38,6 @@ class SetupuserCubit extends BaseCubit<SetupuserState> {
         name: username,
         gender: _userType == UserType.male ? 'male' : 'female'));
     navigator.currentState!
-        .pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
+        .pushReplacement(MaterialPageRoute(builder: (_) => TimerScreen()));
   }
 }
