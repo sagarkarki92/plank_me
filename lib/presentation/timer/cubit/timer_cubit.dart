@@ -9,36 +9,35 @@ part 'timer_cubit.freezed.dart';
 class TimerCubit extends BaseCubit<TimerState> {
   late Timer timer;
   late Stopwatch stopwatch;
-  String plankTime = '00:00';
+
+  String completedAt = '0 Minutes 0 seconds';
 
   TimerCubit() : super(const TimerState.initial('00:00'));
 
   void startPlankWatch() {
     stopwatch = Stopwatch()..start();
     timer = Timer.periodic(Duration(seconds: 1), (_) {
-      plankTime = _getPlankTime(stopwatch.elapsed);
-      emit(Running(plankTime));
+      emit(Running(_getPlankTime));
     });
   }
 
   void stopPlankWatch() {
     stopwatch.stop();
     timer.cancel();
-    emit(Stop(plankTime));
+    completedAt = '$_getMinutes Minutes and $_getSeconds Seconds';
+    emit(Stop(_getPlankTime, completedAt));
   }
 
   void resetPlankWatch() {
-    plankTime = '00 : 00';
     stopwatch.stop();
     timer.cancel();
-    emit(Initial(plankTime));
+    emit(const Initial('00 : 00'));
   }
 
-  String _getPlankTime(Duration stopwatchValue) {
-    final String minutes =
-        stopwatchValue.inMinutes.floor().toString().padLeft(2, '0');
-    final String seconds =
-        (stopwatchValue.inSeconds % 60).floor().toString().padLeft(2, '0');
-    return '$minutes : $seconds';
-  }
+  String get _getPlankTime => '$_getMinutes : $_getSeconds';
+
+  String get _getMinutes =>
+      stopwatch.elapsed.inMinutes.floor().toString().padLeft(2, '0');
+  String get _getSeconds =>
+      (stopwatch.elapsed.inSeconds % 60).floor().toString().padLeft(2, '0');
 }

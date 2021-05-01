@@ -37,7 +37,6 @@ class SetupuserCubit extends BaseCubit<SetupuserState> {
     userRepository.setUserDetails(User(
         name: username,
         gender: _userType == UserType.male ? 'male' : 'female'));
-    navigator.currentState!
-        .pushReplacement(MaterialPageRoute(builder: (_) => TimerScreen()));
+    emit(const Success());
   }
 }

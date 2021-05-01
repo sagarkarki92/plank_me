@@ -36,7 +36,6 @@ class _TimerScreenState extends State<TimerScreen> {
             children: [
               PlankTimer(),
               Button(),
-              ResetButton(),
             ],
           ),
         ),

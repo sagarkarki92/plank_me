@@ -28,9 +28,10 @@ class _$TimerStateTearOff {
     );
   }
 
-  Stop stop(String timerValue) {
+  Stop stop(String timerValue, String completedTime) {
     return Stop(
       timerValue,
+      completedTime,
     );
   }
 }
@@ -46,14 +47,14 @@ mixin _$TimerState {
   TResult when<TResult extends Object?>({
     required TResult Function(String timerValue) initial,
     required TResult Function(String timerValue) running,
-    required TResult Function(String timerValue) stop,
+    required TResult Function(String timerValue, String completedTime) stop,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String timerValue)? initial,
     TResult Function(String timerValue)? running,
-    TResult Function(String timerValue)? stop,
+    TResult Function(String timerValue, String completedTime)? stop,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -173,7 +174,7 @@ class _$Initial implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function(String timerValue) initial,
     required TResult Function(String timerValue) running,
-    required TResult Function(String timerValue) stop,
+    required TResult Function(String timerValue, String completedTime) stop,
   }) {
     return initial(timerValue);
   }
@@ -183,7 +184,7 @@ class _$Initial implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String timerValue)? initial,
     TResult Function(String timerValue)? running,
-    TResult Function(String timerValue)? stop,
+    TResult Function(String timerValue, String completedTime)? stop,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -293,7 +294,7 @@ class _$Running implements Running {
   TResult when<TResult extends Object?>({
     required TResult Function(String timerValue) initial,
     required TResult Function(String timerValue) running,
-    required TResult Function(String timerValue) stop,
+    required TResult Function(String timerValue, String completedTime) stop,
   }) {
     return running(timerValue);
   }
@@ -303,7 +304,7 @@ class _$Running implements Running {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String timerValue)? initial,
     TResult Function(String timerValue)? running,
-    TResult Function(String timerValue)? stop,
+    TResult Function(String timerValue, String completedTime)? stop,
     required TResult orElse(),
   }) {
     if (running != null) {
@@ -352,7 +353,7 @@ abstract class $StopCopyWith<$Res> implements $TimerStateCopyWith<$Res> {
   factory $StopCopyWith(Stop value, $Res Function(Stop) then) =
       _$StopCopyWithImpl<$Res>;
   @override
-  $Res call({String timerValue});
+  $Res call({String timerValue, String completedTime});
 }
 
 /// @nodoc
@@ -367,11 +368,16 @@ class _$StopCopyWithImpl<$Res> extends _$TimerStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? timerValue = freezed,
+    Object? completedTime = freezed,
   }) {
     return _then(Stop(
       timerValue == freezed
           ? _value.timerValue
           : timerValue // ignore: cast_nullable_to_non_nullable
+              as String,
+      completedTime == freezed
+          ? _value.completedTime
+          : completedTime // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -380,14 +386,16 @@ class _$StopCopyWithImpl<$Res> extends _$TimerStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Stop implements Stop {
-  const _$Stop(this.timerValue);
+  const _$Stop(this.timerValue, this.completedTime);
 
   @override
   final String timerValue;
+  @override
+  final String completedTime;
 
   @override
   String toString() {
-    return 'TimerState.stop(timerValue: $timerValue)';
+    return 'TimerState.stop(timerValue: $timerValue, completedTime: $completedTime)';
   }
 
   @override
@@ -396,12 +404,17 @@ class _$Stop implements Stop {
         (other is Stop &&
             (identical(other.timerValue, timerValue) ||
                 const DeepCollectionEquality()
-                    .equals(other.timerValue, timerValue)));
+                    .equals(other.timerValue, timerValue)) &&
+            (identical(other.completedTime, completedTime) ||
+                const DeepCollectionEquality()
+                    .equals(other.completedTime, completedTime)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(timerValue);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(timerValue) ^
+      const DeepCollectionEquality().hash(completedTime);
 
   @JsonKey(ignore: true)
   @override
@@ -413,9 +426,9 @@ class _$Stop implements Stop {
   TResult when<TResult extends Object?>({
     required TResult Function(String timerValue) initial,
     required TResult Function(String timerValue) running,
-    required TResult Function(String timerValue) stop,
+    required TResult Function(String timerValue, String completedTime) stop,
   }) {
-    return stop(timerValue);
+    return stop(timerValue, completedTime);
   }
 
   @override
@@ -423,11 +436,11 @@ class _$Stop implements Stop {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String timerValue)? initial,
     TResult Function(String timerValue)? running,
-    TResult Function(String timerValue)? stop,
+    TResult Function(String timerValue, String completedTime)? stop,
     required TResult orElse(),
   }) {
     if (stop != null) {
-      return stop(timerValue);
+      return stop(timerValue, completedTime);
     }
     return orElse();
   }
@@ -458,10 +471,11 @@ class _$Stop implements Stop {
 }
 
 abstract class Stop implements TimerState {
-  const factory Stop(String timerValue) = _$Stop;
+  const factory Stop(String timerValue, String completedTime) = _$Stop;
 
   @override
   String get timerValue => throw _privateConstructorUsedError;
+  String get completedTime => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $StopCopyWith<Stop> get copyWith => throw _privateConstructorUsedError;

@@ -4,13 +4,13 @@ import 'package:plank_me/core/service_locator.dart';
 import 'package:plank_me/presentation/app/cubit/app_cubit.dart';
 import 'package:plank_me/presentation/screens.dart';
 
-import 'presentation/app/app_service/navigation_service.dart';
+import 'presentation/app/app_service/app_navigator.dart';
 
 class PlankMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      navigatorKey: locator<NavigationService>().navigatorKey,
+      navigatorKey: locator<AppNavigator>().navigatorKey,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(

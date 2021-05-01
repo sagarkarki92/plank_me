@@ -13,12 +13,15 @@ class UserInfo extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           UsernamefieldCubit(setupuserCubit: context.read<SetupuserCubit>()),
-      child: Column(
-        children: [
-          UsernameField(),
-          GenderSelection(),
-          Submit(),
-        ],
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            UsernameField(),
+            GenderSelection(),
+            Submit(),
+          ],
+        ),
       ),
     );
   }
