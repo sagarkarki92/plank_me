@@ -21,21 +21,26 @@ class MyplankCubit extends Cubit<MyplankState> {
 
   void init() {
     user = _userRepository.getUserDetails();
-    try {
-      personalBestTime = _planktimeRepository.getPersonalBestTime();
-    } catch (e) {
-      personalBestTime = 0;
-    }
+    personalBestTime = _planktimeRepository.getPersonalBestTime();
   }
 
   String get userName => user.name!;
   String get personBest => TimeUtils.getShowTime(personalBestTime);
 
-  bool isNewBest(int timeInSeconds) {
-    return timeInSeconds > personalBestTime;
+  void recordPlankTime(int timeInSeconds) {
+    if (isNewBest(timeInSeconds)) {
+      _setNewBest(timeInSeconds);
+    }
+    _setPlankTime(timeInSeconds);
   }
 
-  void setNewBest(int timeInSeconds) {
+  bool isNewBest(int timeInSeconds) => timeInSeconds > personalBestTime;
+
+  void _setNewBest(int timeInSeconds) {
     _planktimeRepository.setPersonalBestTime(timeInSeconds);
+  }
+
+  void _setPlankTime(int timeInSeconds) {
+    _planktimeRepository.recordPlankTime(timeInSeconds);
   }
 }

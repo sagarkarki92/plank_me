@@ -1,10 +1,11 @@
 import 'package:hive/hive.dart';
 import 'package:plank_me/data/models/user.dart';
+import 'package:plank_me/data/services/local_storage_service.dart';
 import 'package:plank_me/repositories/user_repository.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class UserService implements UserRepository {
-  Box localUser = Hive.box('userDetails');
+  Box localUser = Hive.box(StorageKeys.userDetails);
 
   User? user;
 

@@ -41,9 +41,7 @@ class TimerCubit extends BaseCubit<TimerState> {
   String get _getPlankTime =>
       TimeUtils.getShowTime(stopwatch.elapsed.inSeconds);
 
-  void recordPlankTime() {
-    if (_myplankCubit.isNewBest(stopwatch.elapsed.inSeconds)) {
-      _myplankCubit.setNewBest(stopwatch.elapsed.inSeconds);
-    }
+  void donePlanking() {
+    _myplankCubit.recordPlankTime(stopwatch.elapsed.inSeconds);
   }
 }

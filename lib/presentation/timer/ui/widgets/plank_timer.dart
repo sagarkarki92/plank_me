@@ -19,7 +19,8 @@ class PlankTimer extends StatelessWidget {
                   ElevatedButton(
                       child: const Text('Done for today'),
                       onPressed: () {
-                        context.read<TimerCubit>().recordPlankTime();
+                        
+                        context.read<TimerCubit>().donePlanking();
                         Navigator.pop(context);
                       }),
                   TextButton(
