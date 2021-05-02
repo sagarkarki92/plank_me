@@ -6,12 +6,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 class UserService implements UserRepository {
   Box localUser = Hive.box('userDetails');
 
+  User? user;
+
   @override
   User getUserDetails() {
-    final User user = User(
+    user ??= User(
         gender: localUser.get('gender') as String,
         name: localUser.get('name') as String);
-    return user;
+    return user!;
   }
 
   @override

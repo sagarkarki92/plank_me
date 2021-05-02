@@ -11,6 +11,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox('userDetails');
+  await Hive.openBox('plankInformation');
   locatorInit();
   runApp(BlocProvider(
     create: (_) => AppCubit(),

@@ -1,22 +1,25 @@
 import 'dart:async';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:plank_me/core/utils/time_utils.dart';
 import 'package:plank_me/presentation/app/app_service/base_cubit.dart';
+import 'package:plank_me/presentation/timer/myplank_cubit/myplank_cubit.dart';
 
 part 'timer_state.dart';
 part 'timer_cubit.freezed.dart';
 
 class TimerCubit extends BaseCubit<TimerState> {
+  final MyplankCubit _myplankCubit;
   late Timer timer;
   late Stopwatch stopwatch;
 
   String completedAt = '0 Minutes 0 seconds';
 
-  TimerCubit() : super(const TimerState.initial('00:00'));
+  TimerCubit(this._myplankCubit) : super(const TimerState.initial('00 : 00'));
 
   void startPlankWatch() {
     stopwatch = Stopwatch()..start();
-    timer = Timer.periodic(Duration(seconds: 1), (_) {
+    timer = Timer.periodic(const Duration(seconds: 1), (_) {
       emit(Running(_getPlankTime));
     });
   }
@@ -24,7 +27,8 @@ class TimerCubit extends BaseCubit<TimerState> {
   void stopPlankWatch() {
     stopwatch.stop();
     timer.cancel();
-    completedAt = '$_getMinutes Minutes and $_getSeconds Seconds';
+    completedAt = TimeUtils.getShowTimeString(stopwatch.elapsed.inSeconds);
+
     emit(Stop(_getPlankTime, completedAt));
   }
 
@@ -34,10 +38,12 @@ class TimerCubit extends BaseCubit<TimerState> {
     emit(const Initial('00 : 00'));
   }
 
-  String get _getPlankTime => '$_getMinutes : $_getSeconds';
+  String get _getPlankTime =>
+      TimeUtils.getShowTime(stopwatch.elapsed.inSeconds);
 
-  String get _getMinutes =>
-      stopwatch.elapsed.inMinutes.floor().toString().padLeft(2, '0');
-  String get _getSeconds =>
-      (stopwatch.elapsed.inSeconds % 60).floor().toString().padLeft(2, '0');
+  void recordPlankTime() {
+    if (_myplankCubit.isNewBest(stopwatch.elapsed.inSeconds)) {
+      _myplankCubit.setNewBest(stopwatch.elapsed.inSeconds);
+    }
+  }
 }

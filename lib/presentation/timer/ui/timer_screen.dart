@@ -2,43 +2,55 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plank_me/presentation/timer/cubit/timer_cubit.dart';
+import 'package:plank_me/core/service_locator.dart';
+import 'package:plank_me/presentation/timer/myplank_cubit/myplank_cubit.dart';
+import 'package:plank_me/presentation/timer/plank_timer/timer_cubit.dart';
 import 'package:plank_me/presentation/timer/ui/widgets/timer_widgets.dart';
+import 'package:plank_me/repositories/planktime_repository.dart';
+import 'package:plank_me/repositories/user_repository.dart';
 
-class TimerScreen extends StatefulWidget {
+class TimerScreen extends StatelessWidget {
   @override
-  _TimerScreenState createState() => _TimerScreenState();
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+            create: (context) => MyplankCubit(
+                  locator<UserRepository>(),
+                  locator<PlanktimeRepository>(),
+                )..init()),
+        BlocProvider(
+          create: (context) => TimerCubit(
+            context.read<MyplankCubit>(),
+          ),
+        ),
+      ],
+      child: const Scaffold(
+        body: TimerScreenBody(),
+      ),
+    );
+  }
 }
 
-class _TimerScreenState extends State<TimerScreen> {
-  late Stopwatch stopwatch;
-  late String time = '00';
-  late Duration duration;
-  late Timer timer;
-
-  @override
-  void initState() {
-    super.initState();
-    stopwatch = Stopwatch();
-    duration = _getDuration;
-  }
-
-  Duration get _getDuration => const Duration(seconds: 1);
+class TimerScreenBody extends StatelessWidget {
+  const TimerScreenBody({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TimerCubit(),
-      child: Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              PlankTimer(),
-              Button(),
-            ],
-          ),
-        ),
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text('Hello ${context.read<MyplankCubit>().userName}'),
+          const SizedBox(height: 8.0),
+          Text(
+              'Time to beat ${context.watch<MyplankCubit>().personBest.toString()}'),
+          const SizedBox(height: 8.0),
+          PlankTimer(),
+          Button(),
+        ],
       ),
     );
   }
