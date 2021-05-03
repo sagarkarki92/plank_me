@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:plank_me/data/models/plank_info.dart';
 import 'package:plank_me/data/services/local_storage_service.dart';
 import 'package:plank_me/repositories/planktime_repository.dart';
 
@@ -7,6 +8,8 @@ class PlankService implements PlanktimeRepository {
 
   final plank = Hive.box(StorageKeys.plankInformation);
   final plankRecords = Hive.box(StorageKeys.plankRecords);
+  late int currentPlankTime;
+
   @override
   int getPersonalBestTime() {
     try {
@@ -23,15 +26,20 @@ class PlankService implements PlanktimeRepository {
 
   @override
   void recordPlankTime(int timeInSeconds) async {
-    //alternatively
+    currentPlankTime = timeInSeconds;
+
     await plankRecords.add({
       'date': DateTime.now().toIso8601String(),
       'plankTime': timeInSeconds,
     });
   }
 
-  getAllPlankTime() {
-    final list = plankRecords.values.toList() as Map<String, dynamic>;
-    print(list);
+  @override
+  List<PlankInfo> getAllPlankTime() {
+    final list = plankRecords.values
+        .map((e) => PlankInfo(
+            date: e['date'] as String, planktime: e['plankTime'] as int))
+        .toList();
+    return list;
   }
 }
