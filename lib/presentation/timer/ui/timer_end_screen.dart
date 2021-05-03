@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plank_me/presentation/timer/ui/widgets/timer_widgets.dart';
 
 import '../cubit/timerend_cubit.dart';
 
@@ -8,8 +9,11 @@ class TimerEndScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => TimerendCubit()..init(),
-      child: Scaffold(
-        body: const TimerendBody(),
+      child: const Scaffold(
+        body: FinishPlankWithNewBest(
+          username: 'sagar',
+          plankSeconds: 455,
+        ),
       ),
     );
   }
@@ -26,23 +30,11 @@ class TimerendBody extends StatelessWidget {
       bloc: BlocProvider.of<TimerendCubit>(context),
       builder: (context, state) => state.when(
         initial: () => Container(),
-        newBest: (String username, int timeInSeconds) =>
-            _buildNewBestWidget(username, timeInSeconds),
+        newBest: (String username, int timeInSeconds) => FinishPlankWithNewBest(
+            username: username, plankSeconds: timeInSeconds),
         finish: (String username, int timeInSeconds) =>
-            _buildFinishWidget(username, timeInSeconds),
+            FinishPlanking(username: username, plankSeconds: timeInSeconds),
       ),
-    );
-  }
-
-  Widget _buildFinishWidget(String username, int timeInSeconds) {
-    return const Center(
-      child: Text('Well done for today'),
-    );
-  }
-
-  Widget _buildNewBestWidget(String username, int timeInSeconds) {
-    return const Center(
-      child: Text('Congratulation! New best'),
     );
   }
 }
