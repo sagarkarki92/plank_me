@@ -11,8 +11,10 @@ class FinishPlanking extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisSize:MainAxisSize.min,
         children: [
           const Text('Well done for today'),
+          FinishButton(),
           ScheduleButton(),
         ],
       ),

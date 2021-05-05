@@ -11,9 +11,10 @@ class FinishPlankWithNewBest extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize:MainAxisSize.min,
         children: [
           const Text('Congratulation! New best'),
+          FinishButton(),
           ScheduleButton(),
         ],
       ),

@@ -20,18 +20,22 @@ class _$TimerendStateTearOff {
     return const Initial();
   }
 
-  NewBest newBest(String username, int timeInSecond) {
-    return NewBest(
+  NewBestScore newBestScore(String username, int timeInSecond) {
+    return NewBestScore(
       username,
       timeInSecond,
     );
   }
 
-  Finish finish(String username, int timeInSecond) {
-    return Finish(
+  OrdinaryScore ordinaryScore(String username, int timeInSecond) {
+    return OrdinaryScore(
       username,
       timeInSecond,
     );
+  }
+
+  Finish finish() {
+    return const Finish();
   }
 }
 
@@ -43,29 +47,33 @@ mixin _$TimerendState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String username, int timeInSecond) newBest,
-    required TResult Function(String username, int timeInSecond) finish,
+    required TResult Function(String username, int timeInSecond) newBestScore,
+    required TResult Function(String username, int timeInSecond) ordinaryScore,
+    required TResult Function() finish,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String username, int timeInSecond)? newBest,
-    TResult Function(String username, int timeInSecond)? finish,
+    TResult Function(String username, int timeInSecond)? newBestScore,
+    TResult Function(String username, int timeInSecond)? ordinaryScore,
+    TResult Function()? finish,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
-    required TResult Function(NewBest value) newBest,
+    required TResult Function(NewBestScore value) newBestScore,
+    required TResult Function(OrdinaryScore value) ordinaryScore,
     required TResult Function(Finish value) finish,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
-    TResult Function(NewBest value)? newBest,
+    TResult Function(NewBestScore value)? newBestScore,
+    TResult Function(OrdinaryScore value)? ordinaryScore,
     TResult Function(Finish value)? finish,
     required TResult orElse(),
   }) =>
@@ -127,8 +135,9 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String username, int timeInSecond) newBest,
-    required TResult Function(String username, int timeInSecond) finish,
+    required TResult Function(String username, int timeInSecond) newBestScore,
+    required TResult Function(String username, int timeInSecond) ordinaryScore,
+    required TResult Function() finish,
   }) {
     return initial();
   }
@@ -137,8 +146,9 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String username, int timeInSecond)? newBest,
-    TResult Function(String username, int timeInSecond)? finish,
+    TResult Function(String username, int timeInSecond)? newBestScore,
+    TResult Function(String username, int timeInSecond)? ordinaryScore,
+    TResult Function()? finish,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -151,7 +161,8 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
-    required TResult Function(NewBest value) newBest,
+    required TResult Function(NewBestScore value) newBestScore,
+    required TResult Function(OrdinaryScore value) ordinaryScore,
     required TResult Function(Finish value) finish,
   }) {
     return initial(this);
@@ -161,7 +172,8 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
-    TResult Function(NewBest value)? newBest,
+    TResult Function(NewBestScore value)? newBestScore,
+    TResult Function(OrdinaryScore value)? ordinaryScore,
     TResult Function(Finish value)? finish,
     required TResult orElse(),
   }) {
@@ -177,27 +189,29 @@ abstract class Initial implements TimerendState {
 }
 
 /// @nodoc
-abstract class $NewBestCopyWith<$Res> {
-  factory $NewBestCopyWith(NewBest value, $Res Function(NewBest) then) =
-      _$NewBestCopyWithImpl<$Res>;
+abstract class $NewBestScoreCopyWith<$Res> {
+  factory $NewBestScoreCopyWith(
+          NewBestScore value, $Res Function(NewBestScore) then) =
+      _$NewBestScoreCopyWithImpl<$Res>;
   $Res call({String username, int timeInSecond});
 }
 
 /// @nodoc
-class _$NewBestCopyWithImpl<$Res> extends _$TimerendStateCopyWithImpl<$Res>
-    implements $NewBestCopyWith<$Res> {
-  _$NewBestCopyWithImpl(NewBest _value, $Res Function(NewBest) _then)
-      : super(_value, (v) => _then(v as NewBest));
+class _$NewBestScoreCopyWithImpl<$Res> extends _$TimerendStateCopyWithImpl<$Res>
+    implements $NewBestScoreCopyWith<$Res> {
+  _$NewBestScoreCopyWithImpl(
+      NewBestScore _value, $Res Function(NewBestScore) _then)
+      : super(_value, (v) => _then(v as NewBestScore));
 
   @override
-  NewBest get _value => super._value as NewBest;
+  NewBestScore get _value => super._value as NewBestScore;
 
   @override
   $Res call({
     Object? username = freezed,
     Object? timeInSecond = freezed,
   }) {
-    return _then(NewBest(
+    return _then(NewBestScore(
       username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -212,8 +226,8 @@ class _$NewBestCopyWithImpl<$Res> extends _$TimerendStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NewBest implements NewBest {
-  const _$NewBest(this.username, this.timeInSecond);
+class _$NewBestScore implements NewBestScore {
+  const _$NewBestScore(this.username, this.timeInSecond);
 
   @override
   final String username;
@@ -222,13 +236,13 @@ class _$NewBest implements NewBest {
 
   @override
   String toString() {
-    return 'TimerendState.newBest(username: $username, timeInSecond: $timeInSecond)';
+    return 'TimerendState.newBestScore(username: $username, timeInSecond: $timeInSecond)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is NewBest &&
+        (other is NewBestScore &&
             (identical(other.username, username) ||
                 const DeepCollectionEquality()
                     .equals(other.username, username)) &&
@@ -245,29 +259,31 @@ class _$NewBest implements NewBest {
 
   @JsonKey(ignore: true)
   @override
-  $NewBestCopyWith<NewBest> get copyWith =>
-      _$NewBestCopyWithImpl<NewBest>(this, _$identity);
+  $NewBestScoreCopyWith<NewBestScore> get copyWith =>
+      _$NewBestScoreCopyWithImpl<NewBestScore>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String username, int timeInSecond) newBest,
-    required TResult Function(String username, int timeInSecond) finish,
+    required TResult Function(String username, int timeInSecond) newBestScore,
+    required TResult Function(String username, int timeInSecond) ordinaryScore,
+    required TResult Function() finish,
   }) {
-    return newBest(username, timeInSecond);
+    return newBestScore(username, timeInSecond);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String username, int timeInSecond)? newBest,
-    TResult Function(String username, int timeInSecond)? finish,
+    TResult Function(String username, int timeInSecond)? newBestScore,
+    TResult Function(String username, int timeInSecond)? ordinaryScore,
+    TResult Function()? finish,
     required TResult orElse(),
   }) {
-    if (newBest != null) {
-      return newBest(username, timeInSecond);
+    if (newBestScore != null) {
+      return newBestScore(username, timeInSecond);
     }
     return orElse();
   }
@@ -276,41 +292,183 @@ class _$NewBest implements NewBest {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
-    required TResult Function(NewBest value) newBest,
+    required TResult Function(NewBestScore value) newBestScore,
+    required TResult Function(OrdinaryScore value) ordinaryScore,
     required TResult Function(Finish value) finish,
   }) {
-    return newBest(this);
+    return newBestScore(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
-    TResult Function(NewBest value)? newBest,
+    TResult Function(NewBestScore value)? newBestScore,
+    TResult Function(OrdinaryScore value)? ordinaryScore,
     TResult Function(Finish value)? finish,
     required TResult orElse(),
   }) {
-    if (newBest != null) {
-      return newBest(this);
+    if (newBestScore != null) {
+      return newBestScore(this);
     }
     return orElse();
   }
 }
 
-abstract class NewBest implements TimerendState {
-  const factory NewBest(String username, int timeInSecond) = _$NewBest;
+abstract class NewBestScore implements TimerendState {
+  const factory NewBestScore(String username, int timeInSecond) =
+      _$NewBestScore;
 
   String get username => throw _privateConstructorUsedError;
   int get timeInSecond => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $NewBestCopyWith<NewBest> get copyWith => throw _privateConstructorUsedError;
+  $NewBestScoreCopyWith<NewBestScore> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OrdinaryScoreCopyWith<$Res> {
+  factory $OrdinaryScoreCopyWith(
+          OrdinaryScore value, $Res Function(OrdinaryScore) then) =
+      _$OrdinaryScoreCopyWithImpl<$Res>;
+  $Res call({String username, int timeInSecond});
+}
+
+/// @nodoc
+class _$OrdinaryScoreCopyWithImpl<$Res>
+    extends _$TimerendStateCopyWithImpl<$Res>
+    implements $OrdinaryScoreCopyWith<$Res> {
+  _$OrdinaryScoreCopyWithImpl(
+      OrdinaryScore _value, $Res Function(OrdinaryScore) _then)
+      : super(_value, (v) => _then(v as OrdinaryScore));
+
+  @override
+  OrdinaryScore get _value => super._value as OrdinaryScore;
+
+  @override
+  $Res call({
+    Object? username = freezed,
+    Object? timeInSecond = freezed,
+  }) {
+    return _then(OrdinaryScore(
+      username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      timeInSecond == freezed
+          ? _value.timeInSecond
+          : timeInSecond // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OrdinaryScore implements OrdinaryScore {
+  const _$OrdinaryScore(this.username, this.timeInSecond);
+
+  @override
+  final String username;
+  @override
+  final int timeInSecond;
+
+  @override
+  String toString() {
+    return 'TimerendState.ordinaryScore(username: $username, timeInSecond: $timeInSecond)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is OrdinaryScore &&
+            (identical(other.username, username) ||
+                const DeepCollectionEquality()
+                    .equals(other.username, username)) &&
+            (identical(other.timeInSecond, timeInSecond) ||
+                const DeepCollectionEquality()
+                    .equals(other.timeInSecond, timeInSecond)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(username) ^
+      const DeepCollectionEquality().hash(timeInSecond);
+
+  @JsonKey(ignore: true)
+  @override
+  $OrdinaryScoreCopyWith<OrdinaryScore> get copyWith =>
+      _$OrdinaryScoreCopyWithImpl<OrdinaryScore>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(String username, int timeInSecond) newBestScore,
+    required TResult Function(String username, int timeInSecond) ordinaryScore,
+    required TResult Function() finish,
+  }) {
+    return ordinaryScore(username, timeInSecond);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String username, int timeInSecond)? newBestScore,
+    TResult Function(String username, int timeInSecond)? ordinaryScore,
+    TResult Function()? finish,
+    required TResult orElse(),
+  }) {
+    if (ordinaryScore != null) {
+      return ordinaryScore(username, timeInSecond);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(NewBestScore value) newBestScore,
+    required TResult Function(OrdinaryScore value) ordinaryScore,
+    required TResult Function(Finish value) finish,
+  }) {
+    return ordinaryScore(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(NewBestScore value)? newBestScore,
+    TResult Function(OrdinaryScore value)? ordinaryScore,
+    TResult Function(Finish value)? finish,
+    required TResult orElse(),
+  }) {
+    if (ordinaryScore != null) {
+      return ordinaryScore(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OrdinaryScore implements TimerendState {
+  const factory OrdinaryScore(String username, int timeInSecond) =
+      _$OrdinaryScore;
+
+  String get username => throw _privateConstructorUsedError;
+  int get timeInSecond => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OrdinaryScoreCopyWith<OrdinaryScore> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $FinishCopyWith<$Res> {
   factory $FinishCopyWith(Finish value, $Res Function(Finish) then) =
       _$FinishCopyWithImpl<$Res>;
-  $Res call({String username, int timeInSecond});
 }
 
 /// @nodoc
@@ -321,83 +479,48 @@ class _$FinishCopyWithImpl<$Res> extends _$TimerendStateCopyWithImpl<$Res>
 
   @override
   Finish get _value => super._value as Finish;
-
-  @override
-  $Res call({
-    Object? username = freezed,
-    Object? timeInSecond = freezed,
-  }) {
-    return _then(Finish(
-      username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      timeInSecond == freezed
-          ? _value.timeInSecond
-          : timeInSecond // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$Finish implements Finish {
-  const _$Finish(this.username, this.timeInSecond);
-
-  @override
-  final String username;
-  @override
-  final int timeInSecond;
+  const _$Finish();
 
   @override
   String toString() {
-    return 'TimerendState.finish(username: $username, timeInSecond: $timeInSecond)';
+    return 'TimerendState.finish()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is Finish &&
-            (identical(other.username, username) ||
-                const DeepCollectionEquality()
-                    .equals(other.username, username)) &&
-            (identical(other.timeInSecond, timeInSecond) ||
-                const DeepCollectionEquality()
-                    .equals(other.timeInSecond, timeInSecond)));
+    return identical(this, other) || (other is Finish);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(username) ^
-      const DeepCollectionEquality().hash(timeInSecond);
-
-  @JsonKey(ignore: true)
-  @override
-  $FinishCopyWith<Finish> get copyWith =>
-      _$FinishCopyWithImpl<Finish>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String username, int timeInSecond) newBest,
-    required TResult Function(String username, int timeInSecond) finish,
+    required TResult Function(String username, int timeInSecond) newBestScore,
+    required TResult Function(String username, int timeInSecond) ordinaryScore,
+    required TResult Function() finish,
   }) {
-    return finish(username, timeInSecond);
+    return finish();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String username, int timeInSecond)? newBest,
-    TResult Function(String username, int timeInSecond)? finish,
+    TResult Function(String username, int timeInSecond)? newBestScore,
+    TResult Function(String username, int timeInSecond)? ordinaryScore,
+    TResult Function()? finish,
     required TResult orElse(),
   }) {
     if (finish != null) {
-      return finish(username, timeInSecond);
+      return finish();
     }
     return orElse();
   }
@@ -406,7 +529,8 @@ class _$Finish implements Finish {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
-    required TResult Function(NewBest value) newBest,
+    required TResult Function(NewBestScore value) newBestScore,
+    required TResult Function(OrdinaryScore value) ordinaryScore,
     required TResult Function(Finish value) finish,
   }) {
     return finish(this);
@@ -416,7 +540,8 @@ class _$Finish implements Finish {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
-    TResult Function(NewBest value)? newBest,
+    TResult Function(NewBestScore value)? newBestScore,
+    TResult Function(OrdinaryScore value)? ordinaryScore,
     TResult Function(Finish value)? finish,
     required TResult orElse(),
   }) {
@@ -428,10 +553,5 @@ class _$Finish implements Finish {
 }
 
 abstract class Finish implements TimerendState {
-  const factory Finish(String username, int timeInSecond) = _$Finish;
-
-  String get username => throw _privateConstructorUsedError;
-  int get timeInSecond => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $FinishCopyWith<Finish> get copyWith => throw _privateConstructorUsedError;
+  const factory Finish() = _$Finish;
 }

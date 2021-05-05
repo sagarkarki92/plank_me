@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:plank_me/core/service_locator.dart';
+import 'package:plank_me/core/utils/time_utils.dart';
 import 'package:plank_me/data/models/plank_info.dart';
 import 'package:plank_me/data/models/scheduled_time.dart';
 import 'package:plank_me/data/models/user.dart';
@@ -22,21 +23,28 @@ class TimerendCubit extends Cubit<TimerendState> {
 
   TimerendCubit() : super(const TimerendState.initial());
 
-  init() {
+  void init() {
     user = userRepository.getUserDetails();
     plankRecords = planktimeRepository.getAllPlankTime();
     plankedTime = plankRecords.isEmpty ? 0 : plankRecords.last.planktime!;
 
     if (plankedTime > planktimeRepository.getPersonalBestTime()) {
       planktimeRepository.setPersonalBestTime(plankedTime);
-      emit(NewBest(user.name!, plankedTime));
+      emit(NewBestScore(user.name!, plankedTime));
     } else {
-      emit(Finish(user.name!, plankedTime));
+      emit(OrdinaryScore(user.name!, plankedTime));
     }
   }
 
+  void finishPlankSession() {
+    if (timeService.getSchedulePlankTime() == null) {
+      timeService.setSchedulePlankTime(DateTime.now().add(const Duration(hours: 24)));
+    }
+    emit(const Finish());
+  }
+
   void setScheduledTime(int hour, int minute) {
-    timeService.setSchedulePlankTime(ScheduledTime(hour, minute));
-    print('Next plank is at $hour : $minute');
+    timeService
+        .setSchedulePlankTime(TimeUtils.getTomorrowDateTime(hour, minute));
   }
 }

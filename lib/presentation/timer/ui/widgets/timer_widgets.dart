@@ -4,3 +4,4 @@ export 'finish_with_new_best.dart';
 export 'plank_timer.dart';
 export 'reset_button.dart';
 export 'schedule_button.dart';
+export 'finish_button.dart';

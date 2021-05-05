@@ -19,8 +19,6 @@ class ScheduleButton extends StatelessWidget {
       initialTime: TimeOfDay.now(),
     );
     if (selectedTime != null) {
-      print(selectedTime.periodOffset);
-      
       BlocProvider.of<TimerendCubit>(context, listen: false)
           .setScheduledTime(selectedTime.hour, selectedTime.minute);
     }

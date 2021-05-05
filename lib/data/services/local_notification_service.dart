@@ -43,7 +43,7 @@ class LocalNotificationService {
         priority: Priority.high,
       );
 
-  Future<void> scheduledFor({int? hour, int? minutes}) async {
+  Future<void> scheduledFor(DateTime dateTime) async {
     final String currentTimeZone =
         await FlutterNativeTimezone.getLocalTimezone();
     tz.initializeTimeZones();
@@ -56,7 +56,14 @@ class LocalNotificationService {
       0,
       'Hey there! Ready to conquer your body',
       'Tap to start plank for today',
-      tz.TZDateTime.now(tz.local).add(const Duration(minutes: 1)),
+      tz.TZDateTime(
+        tz.local,
+        dateTime.year,
+        dateTime.month,
+        dateTime.day,
+        dateTime.hour,
+        dateTime.minute,
+      ),
       notificationDetails,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,

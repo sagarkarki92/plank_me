@@ -10,10 +10,7 @@ class TimerEndScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => TimerendCubit()..init(),
       child: const Scaffold(
-        body: FinishPlankWithNewBest(
-          username: 'sagar',
-          plankSeconds: 455,
-        ),
+        body: TimerendBody(),
       ),
     );
   }
@@ -30,10 +27,12 @@ class TimerendBody extends StatelessWidget {
       bloc: BlocProvider.of<TimerendCubit>(context),
       builder: (context, state) => state.when(
         initial: () => Container(),
-        newBest: (String username, int timeInSeconds) => FinishPlankWithNewBest(
-            username: username, plankSeconds: timeInSeconds),
-        finish: (String username, int timeInSeconds) =>
+        newBestScore: (String username, int timeInSeconds) =>
+            FinishPlankWithNewBest(
+                username: username, plankSeconds: timeInSeconds),
+        ordinaryScore: (String username, int timeInSeconds) =>
             FinishPlanking(username: username, plankSeconds: timeInSeconds),
+        finish: () => Container(),
       ),
     );
   }
