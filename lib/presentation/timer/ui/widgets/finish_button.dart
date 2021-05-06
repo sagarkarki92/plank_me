@@ -14,7 +14,7 @@ class FinishButton extends StatelessWidget {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => TimerScreen(),
+              builder: (context) => PlankRecordScreen(),
             ),
           );
         }

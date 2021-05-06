@@ -8,7 +8,6 @@ class PlankService implements PlanktimeRepository {
 
   final plank = Hive.box(StorageKeys.plankInformation);
   final plankRecords = Hive.box(StorageKeys.plankRecords);
-  late int currentPlankTime;
 
   @override
   int getPersonalBestTime() {
@@ -25,9 +24,8 @@ class PlankService implements PlanktimeRepository {
   }
 
   @override
-  void recordPlankTime(int timeInSeconds) async {
-    currentPlankTime = timeInSeconds;
-
+  Future<void> recordPlankTime(int timeInSeconds) async {
+    
     await plankRecords.add({
       'date': DateTime.now().toIso8601String(),
       'plankTime': timeInSeconds,

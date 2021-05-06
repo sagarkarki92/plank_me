@@ -52,7 +52,7 @@ class TimerScreenBody extends StatelessWidget {
             Text('Hello ${context.read<MyplankCubit>().userName}'),
             const SizedBox(height: 8.0),
             Text(
-                'Time to beat ${context.watch<MyplankCubit>().personBest.toString()}'),
+                'Time to beat ${context.watch<MyplankCubit>().personBest}'),
             const SizedBox(height: 8.0),
             PlankTimer(),
             Button(),

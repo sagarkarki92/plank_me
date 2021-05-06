@@ -12,13 +12,26 @@ class PlankMe extends StatelessWidget {
     return MaterialApp(
       navigatorKey: locator<AppNavigator>().navigatorKey,
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Plank Me',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: context.read<AppCubit>().isSessionAvailable()
-          ? TimerScreen()
+          ? _buildHomeScreen(context)
           : OnBoardingScreen(),
     );
+  }
+
+  Widget _buildHomeScreen(BuildContext context) {
+    return FutureBuilder(
+        future: context.read<AppCubit>().hasAlreadyPlankedToday(),
+        builder: (context, state) {
+          if (state.hasData) {
+            return state.data! as bool ? PlankRecordScreen() : TimerScreen();
+          } else if (state.hasError) {
+            return TimerScreen();
+          }
+          return Container();
+        });
   }
 }
