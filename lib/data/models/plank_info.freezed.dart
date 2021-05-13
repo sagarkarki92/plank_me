@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$PlankInfoTearOff {
   const _$PlankInfoTearOff();
 
-  _PlankInfo call({String? date, int? planktime}) {
+  _PlankInfo call({DateTime? date, int? planktime}) {
     return _PlankInfo(
       date: date,
       planktime: planktime,
@@ -29,7 +29,7 @@ const $PlankInfo = _$PlankInfoTearOff();
 
 /// @nodoc
 mixin _$PlankInfo {
-  String? get date => throw _privateConstructorUsedError;
+  DateTime? get date => throw _privateConstructorUsedError;
   int? get planktime => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -41,7 +41,7 @@ mixin _$PlankInfo {
 abstract class $PlankInfoCopyWith<$Res> {
   factory $PlankInfoCopyWith(PlankInfo value, $Res Function(PlankInfo) then) =
       _$PlankInfoCopyWithImpl<$Res>;
-  $Res call({String? date, int? planktime});
+  $Res call({DateTime? date, int? planktime});
 }
 
 /// @nodoc
@@ -61,7 +61,7 @@ class _$PlankInfoCopyWithImpl<$Res> implements $PlankInfoCopyWith<$Res> {
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
       planktime: planktime == freezed
           ? _value.planktime
           : planktime // ignore: cast_nullable_to_non_nullable
@@ -76,7 +76,7 @@ abstract class _$PlankInfoCopyWith<$Res> implements $PlankInfoCopyWith<$Res> {
           _PlankInfo value, $Res Function(_PlankInfo) then) =
       __$PlankInfoCopyWithImpl<$Res>;
   @override
-  $Res call({String? date, int? planktime});
+  $Res call({DateTime? date, int? planktime});
 }
 
 /// @nodoc
@@ -97,7 +97,7 @@ class __$PlankInfoCopyWithImpl<$Res> extends _$PlankInfoCopyWithImpl<$Res>
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
       planktime: planktime == freezed
           ? _value.planktime
           : planktime // ignore: cast_nullable_to_non_nullable
@@ -112,7 +112,7 @@ class _$_PlankInfo implements _PlankInfo {
   _$_PlankInfo({this.date, this.planktime});
 
   @override
-  final String? date;
+  final DateTime? date;
   @override
   final int? planktime;
 
@@ -145,10 +145,10 @@ class _$_PlankInfo implements _PlankInfo {
 }
 
 abstract class _PlankInfo implements PlankInfo {
-  factory _PlankInfo({String? date, int? planktime}) = _$_PlankInfo;
+  factory _PlankInfo({DateTime? date, int? planktime}) = _$_PlankInfo;
 
   @override
-  String? get date => throw _privateConstructorUsedError;
+  DateTime? get date => throw _privateConstructorUsedError;
   @override
   int? get planktime => throw _privateConstructorUsedError;
   @override

@@ -15,19 +15,18 @@ class AppCubit extends BaseCubit<AppState> {
   AppCubit() : super(const AppState.initial());
 
   bool isSessionAvailable() {
-     try {
-       userRepository.getUserDetails();
-       return true;
-     } on NoUserException catch (_) {
+    try {
+      userRepository.getUserDetails();
+      return true;
+    } on NoUserException catch (_) {
       return false;
-     }
+    }
   }
 
   Future<bool> hasAlreadyPlankedToday() async {
     final allPlanks = planktimeRepository.getAllPlankTime();
     if (allPlanks.isEmpty) return false;
-    final bool hasPlanked =
-        DateTime.parse(allPlanks.last.date!).day == DateTime.now().day;
+    final bool hasPlanked = allPlanks.last.date!.day == DateTime.now().day;
     return Future.value(hasPlanked);
   }
 }

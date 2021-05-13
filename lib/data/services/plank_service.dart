@@ -25,7 +25,6 @@ class PlankService implements PlanktimeRepository {
 
   @override
   Future<void> recordPlankTime(int timeInSeconds) async {
-    
     await plankRecords.add({
       'date': DateTime.now().toIso8601String(),
       'plankTime': timeInSeconds,
@@ -34,10 +33,10 @@ class PlankService implements PlanktimeRepository {
 
   @override
   List<PlankInfo> getAllPlankTime() {
-    final list = plankRecords.values
-        .map((e) => PlankInfo(
-            date: e['date'] as String, planktime: e['plankTime'] as int))
-        .toList();
+    final list = plankRecords.values.map((e) {
+      final date = DateTime.parse(e['date'] as String);
+      return PlankInfo(date: date, planktime: e['plankTime'] as int);
+    }).toList();
     return list;
   }
 }
