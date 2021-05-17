@@ -34,7 +34,7 @@ class MyplankCubit extends Cubit<MyplankState> {
 
   bool isNewBest(int timeInSeconds) => timeInSeconds > personalBestTime;
 
-  void _setPlankTime(int timeInSeconds) {
-    _planktimeRepository.recordPlankTime(timeInSeconds);
+  void _setPlankTime(int timeInSeconds) async {
+    await _planktimeRepository.recordPlankTime(timeInSeconds);
   }
 }

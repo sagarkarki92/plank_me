@@ -14,6 +14,7 @@ void main() async {
   await Hive.openBox(StorageKeys.userDetails);
   await Hive.openBox(StorageKeys.plankInformation);
   await Hive.openBox(StorageKeys.plankRecords);
+  await Hive.openBox(StorageKeys.time);
   locatorInit();
   runApp(BlocProvider(
     create: (_) => AppCubit(),

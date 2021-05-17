@@ -4,5 +4,5 @@ part 'plank_info.freezed.dart';
 
 @freezed
 abstract class PlankInfo with _$PlankInfo {
-  factory PlankInfo({String? date, int? planktime}) = _PlankInfo;
+  factory PlankInfo({DateTime? date, int? planktime}) = _PlankInfo;
 }

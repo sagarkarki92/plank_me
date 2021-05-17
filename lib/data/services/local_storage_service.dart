@@ -5,6 +5,8 @@ class StorageKeys {
   static const String userDetails = 'userDetails';
   static const String plankInformation = 'plankInformation';
   static const String plankRecords = 'plankRecords';
+
+  static const String time = 'time';
 }
 
 class LocalStorage {

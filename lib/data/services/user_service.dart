@@ -1,8 +1,8 @@
 import 'package:hive/hive.dart';
+import 'package:plank_me/core/exceptions/user_exception.dart';
 import 'package:plank_me/data/models/user.dart';
 import 'package:plank_me/data/services/local_storage_service.dart';
 import 'package:plank_me/repositories/user_repository.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 class UserService implements UserRepository {
   Box localUser = Hive.box(StorageKeys.userDetails);
@@ -11,10 +11,14 @@ class UserService implements UserRepository {
 
   @override
   User getUserDetails() {
-    user ??= User(
-        gender: localUser.get('gender') as String,
-        name: localUser.get('name') as String);
-    return user!;
+    try {
+      user ??= User(
+          gender: localUser.get('gender') as String,
+          name: localUser.get('name') as String);
+      return user!;
+    } catch (e) {
+      throw NoUserException();
+    }
   }
 
   @override
