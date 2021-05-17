@@ -16,7 +16,7 @@ class UsernamefieldCubit extends Cubit<UsernamefieldState> {
       emit(const Invalid('Character must be greater than 4'));
     } else {
       emit(const UserChecking());
-      Future.delayed(const Duration(seconds: 1), () async {
+      Future.delayed(const Duration(milliseconds: 300), () async {
         await setupuserCubit!.isUserAvailable(username)
             ? emit(const UserAvailable('Username is available!'))
             : emit(const UserExist('Username not available!'));
