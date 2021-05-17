@@ -26,8 +26,13 @@ dependencies:
   cloud_firestore: ^1.0.6
   cupertino_icons: ^1.0.2
   firebase: ^9.0.1
+  flutter_bloc: ^7.0.0
+  flutter_local_notifications: ^5.0.0+3
+  flutter_native_timezone: ^1.0.10
   freezed_annotation: ^0.14.1
   get_it: ^6.1.1
+  hive: ^2.0.4
+  hive_flutter: ^1.0.0
   json_serializable: ^4.1.1
   shared_preferences: ^2.0.5
 
