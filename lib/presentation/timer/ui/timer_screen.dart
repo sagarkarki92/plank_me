@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plank_me/presentation/timer/myplank_cubit/myplank_cubit.dart';
 import 'package:plank_me/presentation/timer/plank_timer/timer_cubit.dart';
 import 'package:plank_me/presentation/timer/ui/widgets/timer_widgets.dart';
-
+import '../../ui_utils/ui_styles.dart';
 import 'timer_end_screen.dart';
 
 class TimerScreen extends StatelessWidget {
@@ -64,7 +64,11 @@ class UiSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Hello ${context.read<MyplankCubit>().userName}'),
+      child: Text(
+        'Hello ${context.read<MyplankCubit>().userName}',
+        style:
+            context.text.headline4!.bold.withColor(context.theme.primaryColor),
+      ),
     );
   }
 }
@@ -73,7 +77,7 @@ class TimerSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.blue.withOpacity(0.5),
+      color: Theme.of(context).primaryColorDark,
       child: Column(
         children: [
           Text('Time to beat ${context.watch<MyplankCubit>().personBest}'),

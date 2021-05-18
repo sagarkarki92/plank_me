@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plank_me/presentation/timer/plank_timer/timer_cubit.dart';
+import '../../../ui_utils/ui_styles.dart';
 
 class PlankTimer extends StatelessWidget {
   @override
@@ -19,7 +20,6 @@ class PlankTimer extends StatelessWidget {
                   ElevatedButton(
                       child: const Text('Done for today'),
                       onPressed: () {
-                        
                         context.read<TimerCubit>().donePlanking();
                         Navigator.pop(context);
                       }),
@@ -45,6 +45,6 @@ class PlankTimer extends StatelessWidget {
   }
 
   Widget _buildTimerText(String value, BuildContext context) {
-    return Text(value, style: Theme.of(context).textTheme.headline3);
+    return Text(value, style: context.text.headline3);
   }
 }
