@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plank_me/presentation/timer/plank_timer/timer_cubit.dart';
+import 'package:plank_me/presentation/ui_utils/colors.dart';
 
 class Button extends StatelessWidget {
   @override
@@ -16,6 +17,10 @@ class Button extends StatelessWidget {
               )
             : ElevatedButton(
                 child: const Text("Stop"),
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(AppColors.error),
+                ),
                 onPressed: () {
                   context.read<TimerCubit>().stopPlankWatch();
                 },

@@ -6,7 +6,7 @@ import 'package:plank_me/presentation/ui_utils/text_theme.dart';
 class AppTheme {
   static ThemeData get _baseTheme {
     return ThemeData(
-      fontFamily: AppConfig.primaryFontFamily,
+      fontFamily: AppConfig.secondaryFontFamily,
       primaryColor: AppColors.primary,
       primaryColorLight: AppColors.primaryLight,
       primaryColorDark: AppColors.primaryDark,
@@ -37,14 +37,16 @@ class AppTheme {
   static ElevatedButtonThemeData get _lightButtonTheme =>
       ElevatedButtonThemeData(
         style: ButtonStyle(
-            backgroundColor:
-                MaterialStateProperty.all<Color>(AppColors.primary),
-            shape: MaterialStateProperty.all<OutlinedBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0),
-              ),
+          backgroundColor: MaterialStateProperty.all<Color>(AppColors.primary),
+          shape: MaterialStateProperty.all<OutlinedBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24.0),
             ),
-            minimumSize: MaterialStateProperty.all<Size>(const Size(60, 40))),
+          ),
+          minimumSize: MaterialStateProperty.all<Size>(
+            const Size(90, 40),
+          ),
+        ),
       );
 
   static IconThemeData get _lightIconTheme => const IconThemeData(

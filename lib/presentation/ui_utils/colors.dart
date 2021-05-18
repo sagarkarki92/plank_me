@@ -6,7 +6,7 @@ class AppColors {
   static final primaryLight = primary.withOpacity(0.3);
 
   static const secondary = Color(0xFFD93636);
-  static const secondaryDark = Color(0xFF8F0000);
+  static const error = Color(0xFF8F0000);
   static final secondaryLight = secondary.withOpacity(0.3);
 
   static const light = Color(0xFFFFFFFF);

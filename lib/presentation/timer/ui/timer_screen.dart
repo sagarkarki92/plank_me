@@ -1,10 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plank_me/presentation/timer/myplank_cubit/myplank_cubit.dart';
 import 'package:plank_me/presentation/timer/plank_timer/timer_cubit.dart';
 import 'package:plank_me/presentation/timer/ui/widgets/timer_widgets.dart';
-
 
 import 'timer_end_screen.dart';
 
@@ -45,19 +43,45 @@ class TimerScreenBody extends StatelessWidget {
           );
         }
       },
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('Hello ${context.read<MyplankCubit>().userName}'),
-            const SizedBox(height: 8.0),
-            Text(
-                'Time to beat ${context.watch<MyplankCubit>().personBest}'),
-            const SizedBox(height: 8.0),
-            PlankTimer(),
-            Button(),
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            flex: 5,
+            child: UiSection(),
+          ),
+          Expanded(
+            flex: 3,
+            child: TimerSection(),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class UiSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('Hello ${context.read<MyplankCubit>().userName}'),
+    );
+  }
+}
+
+class TimerSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.blue.withOpacity(0.5),
+      child: Column(
+        children: [
+          Text('Time to beat ${context.watch<MyplankCubit>().personBest}'),
+          const SizedBox(height: 8.0),
+          PlankTimer(),
+          const SizedBox(height: 8.0),
+          Button(),
+        ],
       ),
     );
   }
