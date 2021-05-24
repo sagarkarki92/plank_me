@@ -16,7 +16,7 @@ class Button extends StatelessWidget {
                 },
               )
             : ElevatedButton(
-                child: const Text("Stop"),
+                child: const Text("Never Stop"),
                 style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all<Color>(AppColors.error),

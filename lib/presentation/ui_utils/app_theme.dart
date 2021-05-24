@@ -10,8 +10,8 @@ class AppTheme {
       primaryColor: AppColors.primary,
       primaryColorLight: AppColors.primaryLight,
       primaryColorDark: AppColors.primaryDark,
-      accentColor: AppColors.secondary,
-      errorColor: AppColors.secondary,
+      accentColor: AppColors.accent,
+      errorColor: AppColors.error,
       primaryColorBrightness: Brightness.light,
     );
   }
@@ -19,7 +19,7 @@ class AppTheme {
   static ThemeData light() {
     return _baseTheme.copyWith(
       brightness: Brightness.light,
-      scaffoldBackgroundColor: AppColors.lightSurface,
+      scaffoldBackgroundColor: AppColors.background,
       textTheme: ApptextStyles.textTheme,
       iconTheme: _lightIconTheme,
       elevatedButtonTheme: _lightButtonTheme,
@@ -37,7 +37,7 @@ class AppTheme {
   static ElevatedButtonThemeData get _lightButtonTheme =>
       ElevatedButtonThemeData(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(AppColors.primary),
+          backgroundColor: MaterialStateProperty.all<Color>(AppColors.accent),
           shape: MaterialStateProperty.all<OutlinedBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(24.0),

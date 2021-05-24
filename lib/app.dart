@@ -27,7 +27,7 @@ class PlankMe extends StatelessWidget {
         future: context.read<AppCubit>().hasAlreadyPlankedToday(),
         builder: (context, state) {
           if (state.hasData) {
-            return state.data! as bool ? PlankRecordScreen() : TimerScreen();
+            return state.data! as bool ? TimerScreen() : TimerScreen();
           } else if (state.hasError) {
             return TimerScreen();
           }

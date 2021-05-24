@@ -45,6 +45,11 @@ class PlankTimer extends StatelessWidget {
   }
 
   Widget _buildTimerText(String value, BuildContext context) {
-    return Text(value, style: context.text.headline3);
+    return Text(
+      value,
+      style: context.text.headline3!.withColor(
+        AppColors.lightAccent,
+      ),
+    );
   }
 }

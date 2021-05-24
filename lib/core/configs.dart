@@ -5,10 +5,12 @@ class AppConfig {
   static String get secondaryFontFamily => 'Inter';
 }
 
-
-
-class AnimationDuration{
+class AnimationDuration {
   static double get fast => 0.5;
   static double get medium => 1;
   static double get slow => 3;
+}
+
+class ConstantConfig {
+  static String motivationQuotes = 'https://type.fit/api/quotes';
 }

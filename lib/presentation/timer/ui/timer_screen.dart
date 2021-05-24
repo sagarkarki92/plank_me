@@ -18,8 +18,10 @@ class TimerScreen extends StatelessWidget {
           ),
         ),
       ],
-      child: const Scaffold(
-        body: TimerScreenBody(),
+      child: const SafeArea(
+        child: Scaffold(
+          body: TimerScreenBody(),
+        ),
       ),
     );
   }
@@ -47,11 +49,11 @@ class TimerScreenBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            flex: 5,
+            flex: 6,
             child: UiSection(),
           ),
           Expanded(
-            flex: 3,
+            flex: 4,
             child: TimerSection(),
           )
         ],
@@ -63,12 +65,14 @@ class TimerScreenBody extends StatelessWidget {
 class UiSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Hello ${context.read<MyplankCubit>().userName}',
-        style:
-            context.text.headline4!.bold.withColor(context.theme.primaryColor),
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Hey ${context.read<MyplankCubit>().userName},',
+          style: context.text.headline4!.bold,
+        ),
+      ],
     );
   }
 }
@@ -76,16 +80,33 @@ class UiSection extends StatelessWidget {
 class TimerSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Theme.of(context).primaryColorDark,
-      child: Column(
-        children: [
-          Text('Time to beat ${context.watch<MyplankCubit>().personBest}'),
-          const SizedBox(height: 8.0),
-          PlankTimer(),
-          const SizedBox(height: 8.0),
-          Button(),
-        ],
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Material(
+        color: Theme.of(context).primaryColor,
+        borderRadius: BorderRadius.circular(24.0),
+        elevation: 24.0,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            RichText(
+              text: TextSpan(
+                text: 'Time to beat ',
+                style: context.text.bodyText1!.thin.white,
+                children: <TextSpan>[
+                  TextSpan(
+                    text: context.watch<MyplankCubit>().personBest,
+                    style: context.text.headline5!.white,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 8.0),
+            PlankTimer(),
+            const SizedBox(height: 8.0),
+            Button(),
+          ],
+        ),
       ),
     );
   }
