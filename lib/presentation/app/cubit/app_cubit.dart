@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:plank_me/data/models/user.dart';
 
 import '../../../core/exceptions/user_exception.dart';
 import '../../../core/service_locator.dart';
@@ -12,11 +13,14 @@ part 'app_state.dart';
 class AppCubit extends BaseCubit<AppState> {
   final PlanktimeRepository planktimeRepository = locator();
   final UserRepository userRepository = locator();
+  late User _user;
   AppCubit() : super(const AppState.initial());
+
+  User get user => _user;
 
   bool isSessionAvailable() {
     try {
-      userRepository.getUserDetails();
+      _user = userRepository.getUserDetails();
       return true;
     } on NoUserException catch (_) {
       return false;

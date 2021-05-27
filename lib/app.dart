@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plank_me/core/configs.dart';
 import 'package:plank_me/core/service_locator.dart';
 import 'package:plank_me/presentation/app/cubit/app_cubit.dart';
+import 'package:plank_me/presentation/main/main_screen.dart';
 import 'package:plank_me/presentation/screens.dart';
 import 'package:plank_me/presentation/ui_utils/app_theme.dart';
 
@@ -23,15 +24,6 @@ class PlankMe extends StatelessWidget {
   }
 
   Widget _buildHomeScreen(BuildContext context) {
-    return FutureBuilder(
-        future: context.read<AppCubit>().hasAlreadyPlankedToday(),
-        builder: (context, state) {
-          if (state.hasData) {
-            return state.data! as bool ? TimerScreen() : TimerScreen();
-          } else if (state.hasError) {
-            return TimerScreen();
-          }
-          return Container();
-        });
+    return MainScreen();
   }
 }
