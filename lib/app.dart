@@ -24,6 +24,7 @@ class PlankMe extends StatelessWidget {
   }
 
   Widget _buildHomeScreen(BuildContext context) {
+    context.read<AppCubit>().hasAlreadyPlankedToday();
     return MainScreen();
   }
 }

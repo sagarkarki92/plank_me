@@ -16,40 +16,41 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  final List<Widget> _view = [
+    TimerScreen(),
+    PlankRecordScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        key: _scaffoldKey,
-        endDrawer: const DrawerContent(),
-        appBar: AppBar(
-          title: const Header(),
-          backgroundColor: AppColors.background,
-          elevation: 0,
-          actions: [
-            IconButton(
-              onPressed: () {
-                _scaffoldKey.currentState!.openEndDrawer();
-              },
-              icon: const FaIcon(
-                FontAwesomeIcons.bars,
-                color: Colors.black,
-                size: 18.0,
+          key: _scaffoldKey,
+          endDrawer: DrawerContent(_scaffoldKey),
+          appBar: AppBar(
+            title: const Header(),
+            backgroundColor: AppColors.background,
+            elevation: 0,
+            actions: [
+              IconButton(
+                onPressed: () {
+                  _scaffoldKey.currentState!.openEndDrawer();
+                },
+                icon: const FaIcon(
+                  FontAwesomeIcons.bars,
+                  color: Colors.black,
+                  size: 18.0,
+                ),
               ),
-            ),
-          ],
-        ),
-        body: FutureBuilder(
-            future: context.read<AppCubit>().hasAlreadyPlankedToday(),
+            ],
+          ),
+          body: BlocBuilder<AppCubit, AppState>(
             builder: (context, state) {
-              if (state.hasData) {
-                return state.data! as bool ? TimerScreen() : TimerScreen();
-              } else if (state.hasError) {
-                return TimerScreen();
-              }
-              return Container();
-            }),
-      ),
+              return state.maybeWhen(
+                  loadScreen: (tabIndex, tabs) => _view[tabIndex],
+                  orElse: () => Container());
+            },
+          )),
     );
   }
 }
