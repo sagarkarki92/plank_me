@@ -14,8 +14,8 @@ class AppCubit extends BaseCubit<AppState> {
   final PlanktimeRepository planktimeRepository = locator();
   final UserRepository userRepository = locator();
   late User _user;
+  int _activeScreen = 0;
   AppCubit() : super(const AppState.initial());
-
   User get user => _user;
 
   bool isSessionAvailable() {
@@ -32,5 +32,9 @@ class AppCubit extends BaseCubit<AppState> {
     if (allPlanks.isEmpty) return false;
     final bool hasPlanked = allPlanks.last.date!.day == DateTime.now().day;
     return Future.value(hasPlanked);
+  }
+
+  void setScreen(int index) {
+    _activeScreen = index;
   }
 }

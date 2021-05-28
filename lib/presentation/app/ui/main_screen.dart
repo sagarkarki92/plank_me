@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../app/cubit/app_cubit.dart';
-import '../screens.dart';
-import '../ui_utils/colors.dart';
-import '../ui_utils/ui_styles.dart';
+import '../../app/cubit/app_cubit.dart';
+import '../../screens.dart';
+import '../../ui_utils/colors.dart';
+import '../../ui_utils/ui_styles.dart';
 import 'widgets/widgets.dart';
 
 class MainScreen extends StatefulWidget {
@@ -53,5 +53,3 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 }
-
-

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plank_me/core/configs.dart';
 import 'package:plank_me/core/service_locator.dart';
 import 'package:plank_me/presentation/app/cubit/app_cubit.dart';
-import 'package:plank_me/presentation/main/main_screen.dart';
+import 'package:plank_me/presentation/app/ui/main_screen.dart';
 import 'package:plank_me/presentation/screens.dart';
 import 'package:plank_me/presentation/ui_utils/app_theme.dart';
 
