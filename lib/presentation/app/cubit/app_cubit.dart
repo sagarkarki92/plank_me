@@ -66,6 +66,11 @@ class AppCubit extends BaseCubit<AppState> {
     return Future.value(hasPlanked);
   }
 
+  void setUser(User user) {
+    _user = user;
+    emit(LoadScreen(_activeScreen, _viewItems));
+  }
+
   void setScreen(int index) {
     _activeScreen = index;
     emit(LoadScreen(_activeScreen, _viewItems));
