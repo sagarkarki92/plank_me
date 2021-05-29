@@ -19,7 +19,7 @@ class TimerScreen extends StatelessWidget {
           ),
         ),
       ],
-      child:const SafeArea(
+      child: const SafeArea(
         child: Scaffold(
           body: TimerScreenBody(),
         ),
@@ -35,16 +35,14 @@ class TimerScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener(
-      bloc: BlocProvider.of<MyplankCubit>(context),
+    return BlocListener<MyplankCubit, MyplankState>(
       listener: (context, state) {
-        if (state is Success) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (_) => TimerEndScreen(),
-            ),
-          );
-        }
+        state.maybeWhen(
+            success: () =>
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (_) => TimerEndScreen(),
+                )),
+            orElse: () {});
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -62,3 +60,4 @@ class TimerScreenBody extends StatelessWidget {
     );
   }
 }
+
