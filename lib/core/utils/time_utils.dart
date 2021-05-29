@@ -1,4 +1,6 @@
 class TimeUtils {
+  static String totalMinutes(int timeInSeconds) =>
+      '${_getMinutes(timeInSeconds)}.${_getSeconds(timeInSeconds)}';
   static String getShowTime(int timeInSeconds) =>
       '${_getMinutes(timeInSeconds)} : ${_getSeconds(timeInSeconds)}';
   static String getShowTimeString(int timeInSeconds) =>

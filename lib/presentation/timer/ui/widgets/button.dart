@@ -5,15 +5,33 @@ import 'package:plank_me/presentation/ui_utils/colors.dart';
 
 class Button extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext contextc) {
     return BlocListener<TimerCubit, TimerState>(
       listener: (context, state) {
         state.maybeWhen(
             stop: (timerValue, completedTime) => showDialog(
                   context: context,
-                  builder: (_) => _TimerDialog(
-                    timerValue: timerValue,
-                    completedTime: completedTime,
+                  barrierDismissible: false,
+                  builder: (_) => Dialog(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('You did $completedTime'),
+                        ElevatedButton(
+                            child: const Text('Done for today'),
+                            onPressed: () {
+                              context.read<TimerCubit>().donePlanking();
+                              Navigator.pop(context);
+                            }),
+                        TextButton(
+                          onPressed: () {
+                            context.read<TimerCubit>().resetPlankWatch();
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Reset'),
+                        )
+                      ],
+                    ),
                   ),
                 ),
             orElse: () {});

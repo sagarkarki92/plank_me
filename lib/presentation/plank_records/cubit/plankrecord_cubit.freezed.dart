@@ -24,9 +24,15 @@ class _$PlankrecordStateTearOff {
     return const Loading();
   }
 
-  Complete complete({String? totalMinutes, List<PlankInfo>? records}) {
+  Complete complete(
+      {required String totalMinutes,
+      required String personalBest,
+      required String plankMessage,
+      required List<PlankInfo> records}) {
     return Complete(
       totalMinutes: totalMinutes,
+      personalBest: personalBest,
+      plankMessage: plankMessage,
       records: records,
     );
   }
@@ -45,7 +51,8 @@ mixin _$PlankrecordState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String? totalMinutes, List<PlankInfo>? records)
+    required TResult Function(String totalMinutes, String personalBest,
+            String plankMessage, List<PlankInfo> records)
         complete,
     required TResult Function() error,
   }) =>
@@ -54,7 +61,9 @@ mixin _$PlankrecordState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String? totalMinutes, List<PlankInfo>? records)? complete,
+    TResult Function(String totalMinutes, String personalBest,
+            String plankMessage, List<PlankInfo> records)?
+        complete,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -134,7 +143,8 @@ class _$Initial implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String? totalMinutes, List<PlankInfo>? records)
+    required TResult Function(String totalMinutes, String personalBest,
+            String plankMessage, List<PlankInfo> records)
         complete,
     required TResult Function() error,
   }) {
@@ -146,7 +156,9 @@ class _$Initial implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String? totalMinutes, List<PlankInfo>? records)? complete,
+    TResult Function(String totalMinutes, String personalBest,
+            String plankMessage, List<PlankInfo> records)?
+        complete,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -226,7 +238,8 @@ class _$Loading implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String? totalMinutes, List<PlankInfo>? records)
+    required TResult Function(String totalMinutes, String personalBest,
+            String plankMessage, List<PlankInfo> records)
         complete,
     required TResult Function() error,
   }) {
@@ -238,7 +251,9 @@ class _$Loading implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String? totalMinutes, List<PlankInfo>? records)? complete,
+    TResult Function(String totalMinutes, String personalBest,
+            String plankMessage, List<PlankInfo> records)?
+        complete,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -283,7 +298,11 @@ abstract class Loading implements PlankrecordState {
 abstract class $CompleteCopyWith<$Res> {
   factory $CompleteCopyWith(Complete value, $Res Function(Complete) then) =
       _$CompleteCopyWithImpl<$Res>;
-  $Res call({String? totalMinutes, List<PlankInfo>? records});
+  $Res call(
+      {String totalMinutes,
+      String personalBest,
+      String plankMessage,
+      List<PlankInfo> records});
 }
 
 /// @nodoc
@@ -298,17 +317,27 @@ class _$CompleteCopyWithImpl<$Res> extends _$PlankrecordStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? totalMinutes = freezed,
+    Object? personalBest = freezed,
+    Object? plankMessage = freezed,
     Object? records = freezed,
   }) {
     return _then(Complete(
       totalMinutes: totalMinutes == freezed
           ? _value.totalMinutes
           : totalMinutes // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      personalBest: personalBest == freezed
+          ? _value.personalBest
+          : personalBest // ignore: cast_nullable_to_non_nullable
+              as String,
+      plankMessage: plankMessage == freezed
+          ? _value.plankMessage
+          : plankMessage // ignore: cast_nullable_to_non_nullable
+              as String,
       records: records == freezed
           ? _value.records
           : records // ignore: cast_nullable_to_non_nullable
-              as List<PlankInfo>?,
+              as List<PlankInfo>,
     ));
   }
 }
@@ -316,16 +345,24 @@ class _$CompleteCopyWithImpl<$Res> extends _$PlankrecordStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Complete implements Complete {
-  const _$Complete({this.totalMinutes, this.records});
+  const _$Complete(
+      {required this.totalMinutes,
+      required this.personalBest,
+      required this.plankMessage,
+      required this.records});
 
   @override
-  final String? totalMinutes;
+  final String totalMinutes;
   @override
-  final List<PlankInfo>? records;
+  final String personalBest;
+  @override
+  final String plankMessage;
+  @override
+  final List<PlankInfo> records;
 
   @override
   String toString() {
-    return 'PlankrecordState.complete(totalMinutes: $totalMinutes, records: $records)';
+    return 'PlankrecordState.complete(totalMinutes: $totalMinutes, personalBest: $personalBest, plankMessage: $plankMessage, records: $records)';
   }
 
   @override
@@ -335,6 +372,12 @@ class _$Complete implements Complete {
             (identical(other.totalMinutes, totalMinutes) ||
                 const DeepCollectionEquality()
                     .equals(other.totalMinutes, totalMinutes)) &&
+            (identical(other.personalBest, personalBest) ||
+                const DeepCollectionEquality()
+                    .equals(other.personalBest, personalBest)) &&
+            (identical(other.plankMessage, plankMessage) ||
+                const DeepCollectionEquality()
+                    .equals(other.plankMessage, plankMessage)) &&
             (identical(other.records, records) ||
                 const DeepCollectionEquality().equals(other.records, records)));
   }
@@ -343,6 +386,8 @@ class _$Complete implements Complete {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(totalMinutes) ^
+      const DeepCollectionEquality().hash(personalBest) ^
+      const DeepCollectionEquality().hash(plankMessage) ^
       const DeepCollectionEquality().hash(records);
 
   @JsonKey(ignore: true)
@@ -355,11 +400,12 @@ class _$Complete implements Complete {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String? totalMinutes, List<PlankInfo>? records)
+    required TResult Function(String totalMinutes, String personalBest,
+            String plankMessage, List<PlankInfo> records)
         complete,
     required TResult Function() error,
   }) {
-    return complete(totalMinutes, records);
+    return complete(totalMinutes, personalBest, plankMessage, records);
   }
 
   @override
@@ -367,12 +413,14 @@ class _$Complete implements Complete {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String? totalMinutes, List<PlankInfo>? records)? complete,
+    TResult Function(String totalMinutes, String personalBest,
+            String plankMessage, List<PlankInfo> records)?
+        complete,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (complete != null) {
-      return complete(totalMinutes, records);
+      return complete(totalMinutes, personalBest, plankMessage, records);
     }
     return orElse();
   }
@@ -405,11 +453,16 @@ class _$Complete implements Complete {
 }
 
 abstract class Complete implements PlankrecordState {
-  const factory Complete({String? totalMinutes, List<PlankInfo>? records}) =
-      _$Complete;
+  const factory Complete(
+      {required String totalMinutes,
+      required String personalBest,
+      required String plankMessage,
+      required List<PlankInfo> records}) = _$Complete;
 
-  String? get totalMinutes => throw _privateConstructorUsedError;
-  List<PlankInfo>? get records => throw _privateConstructorUsedError;
+  String get totalMinutes => throw _privateConstructorUsedError;
+  String get personalBest => throw _privateConstructorUsedError;
+  String get plankMessage => throw _privateConstructorUsedError;
+  List<PlankInfo> get records => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CompleteCopyWith<Complete> get copyWith =>
       throw _privateConstructorUsedError;
@@ -454,7 +507,8 @@ class _$Error implements Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String? totalMinutes, List<PlankInfo>? records)
+    required TResult Function(String totalMinutes, String personalBest,
+            String plankMessage, List<PlankInfo> records)
         complete,
     required TResult Function() error,
   }) {
@@ -466,7 +520,9 @@ class _$Error implements Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String? totalMinutes, List<PlankInfo>? records)? complete,
+    TResult Function(String totalMinutes, String personalBest,
+            String plankMessage, List<PlankInfo> records)?
+        complete,
     TResult Function()? error,
     required TResult orElse(),
   }) {

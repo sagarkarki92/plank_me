@@ -14,13 +14,23 @@ class PlankrecordCubit extends Cubit<PlankrecordState> {
 
   Future<void> getAllRecords() async {
     final records = planktimeRepository.getAllPlankTime();
+    final personalBest = planktimeRepository.getPersonalBestTime();
     int totalPlankedTime = 0;
+
     records.forEach((record) {
       totalPlankedTime += record.planktime!;
     });
 
+    final bool hasPlanked = records.last.date!.day == DateTime.now().day;
+    final plankMessage = hasPlanked
+        ? 'You planked for ${TimeUtils.getShowTimeString(records.last.planktime!)} today.'
+        : "You haven't planked today.";
+
     emit(Complete(
-        totalMinutes: TimeUtils.getShowTimeString(totalPlankedTime),
-        records: records));
+      totalMinutes: TimeUtils.totalMinutes(totalPlankedTime),
+      personalBest: TimeUtils.getShowTime(personalBest),
+      plankMessage: plankMessage,
+      records: records,
+    ));
   }
 }
