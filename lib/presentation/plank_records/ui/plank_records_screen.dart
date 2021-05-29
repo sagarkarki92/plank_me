@@ -9,8 +9,7 @@ class PlankRecordScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => PlankrecordCubit()..getAllRecords(),
       child: Scaffold(
-        appBar: AppBar(title: Text('ENd')),
-        body: PlankRecordBody(),
+        body: const PlankRecordBody(),
       ),
     );
   }

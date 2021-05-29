@@ -8,17 +8,13 @@ import '../../ui_utils/colors.dart';
 import '../../ui_utils/ui_styles.dart';
 import 'widgets/widgets.dart';
 
-class MainScreen extends StatefulWidget {
-  @override
-  _MainScreenState createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
+class MainScreen extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final List<Widget> _view = [
     TimerScreen(),
     PlankRecordScreen(),
+    AboutPlankScreen(),
   ];
 
   @override

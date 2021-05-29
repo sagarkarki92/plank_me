@@ -54,7 +54,6 @@ class DrawerContent extends StatelessWidget {
 class _DrawerItem extends StatelessWidget {
   final String label;
   final IconData icon;
-
   final Function onPressed;
 
   const _DrawerItem({
@@ -72,7 +71,8 @@ class _DrawerItem extends StatelessWidget {
       splashColor: AppColors.error,
       highlightColor: AppColors.error,
       onTap: () => onPressed(),
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 1000),
         padding: const EdgeInsets.symmetric(vertical: 12.0),
         decoration: BoxDecoration(
           color: AppColors.background,
@@ -119,7 +119,8 @@ class _ActiveDrawerItem extends StatelessWidget {
       splashColor: AppColors.error,
       highlightColor: AppColors.error,
       onTap: () => onPressed(),
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 1000),
         padding: const EdgeInsets.symmetric(vertical: 12.0),
         decoration: BoxDecoration(
             color: AppColors.primary,

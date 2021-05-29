@@ -25,7 +25,7 @@ final List<ViewItem> _viewItems = [
     FontAwesomeIcons.addressBook,
   ),
   ViewItem(
-    'Report',
+    'My Progress',
     FontAwesomeIcons.projectDiagram,
   ),
   ViewItem(
