@@ -14,6 +14,7 @@ class CardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(12.0),
+      height: MediaQuery.of(context).size.height * 0.18,
       decoration: BoxDecoration(
         color: AppColors.lightAccent,
         boxShadow: [

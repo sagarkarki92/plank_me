@@ -17,6 +17,11 @@ class PlankrecordCubit extends Cubit<PlankrecordState> {
     final personalBest = planktimeRepository.getPersonalBestTime();
     int totalPlankedTime = 0;
 
+    if(records.isEmpty){
+      emit(const Error());
+      return;
+    }
+
     records.forEach((record) {
       totalPlankedTime += record.planktime!;
     });

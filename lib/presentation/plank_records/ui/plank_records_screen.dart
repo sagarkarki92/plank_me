@@ -45,10 +45,12 @@ class PlankRecordBody extends StatelessWidget {
 
   Widget _buildComplete(
       String totalMinutes, String personalBest, List<PlankInfo> records) {
-    return ProgressView();
+    return const ProgressView();
   }
 
   Widget _buildError() {
-    return const Text('This is error');
+    return const Center(
+      child: Text('No Planks yet!'),
+    );
   }
 }
