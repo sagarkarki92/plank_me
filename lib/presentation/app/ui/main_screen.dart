@@ -19,8 +19,7 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
           key: _scaffoldKey,
           endDrawer: DrawerContent(_scaffoldKey),
           appBar: AppBar(
@@ -46,7 +45,7 @@ class MainScreen extends StatelessWidget {
                   loadScreen: (tabIndex, tabs) => _view[tabIndex],
                   orElse: () => Container());
             },
-          )),
+          ),
     );
   }
 }

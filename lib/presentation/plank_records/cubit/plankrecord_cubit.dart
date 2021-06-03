@@ -17,7 +17,7 @@ class PlankrecordCubit extends Cubit<PlankrecordState> {
     final personalBest = planktimeRepository.getPersonalBestTime();
     int totalPlankedTime = 0;
 
-    if(records.isEmpty){
+    if (records.isEmpty) {
       emit(const Error());
       return;
     }
@@ -26,10 +26,7 @@ class PlankrecordCubit extends Cubit<PlankrecordState> {
       totalPlankedTime += record.planktime!;
     });
 
-    final bool hasPlanked = records.last.date!.day == DateTime.now().day;
-    final plankMessage = hasPlanked
-        ? 'You planked for ${TimeUtils.getShowTimeString(records.last.planktime!)} today.'
-        : "You haven't planked today.";
+    final plankMessage = _getPlankMessage(records);
 
     emit(Complete(
       totalMinutes: TimeUtils.totalMinutes(totalPlankedTime),
@@ -38,4 +35,11 @@ class PlankrecordCubit extends Cubit<PlankrecordState> {
       records: records,
     ));
   }
+}
+
+String _getPlankMessage(List<PlankInfo> records) {
+  final bool hasPlanked = records.last.date!.day == DateTime.now().day;
+  return hasPlanked
+      ? 'You planked for ${TimeUtils.getShowTimeString(records.last.planktime!)} today.'
+      : "You haven't planked today.";
 }

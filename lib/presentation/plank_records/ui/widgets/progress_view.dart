@@ -20,7 +20,6 @@ class ProgressView extends StatelessWidget {
           child: InfoSection(),
         ),
         const Expanded(
-          flex: 6,
           child: GraphSection(),
         ),
       ],

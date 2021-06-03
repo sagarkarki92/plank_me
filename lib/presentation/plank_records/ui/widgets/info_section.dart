@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:plank_me/presentation/plank_records/cubit/plankrecord_cubit.dart';
 import 'package:plank_me/presentation/ui_utils/ui_styles.dart';
 
@@ -16,12 +17,13 @@ class InfoSection extends StatelessWidget {
             complete: (___, __, plankMessage, _) => Material(
                   animationDuration: const Duration(seconds: 1),
                   borderRadius: BorderRadius.circular(12.0),
-                  color: AppColors.light,
+                  color: AppColors.accent.withOpacity(0.2),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       plankMessage,
-                      style: context.text.subtitle2!.withColor(AppColors.dark),
+                      style:
+                          context.text.subtitle2!.withColor(AppColors.accent),
                     ),
                   ),
                 ),
