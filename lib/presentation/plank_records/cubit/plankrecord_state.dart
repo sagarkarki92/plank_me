@@ -8,7 +8,7 @@ abstract class PlankrecordState with _$PlankrecordState {
     required String totalMinutes,
     required String personalBest,
     required String plankMessage,
-    required List<PlankInfo> records,
+    required List<PlankRecordViewModel> records,
   }) = Complete;
   const factory PlankrecordState.error() = Error;
 }

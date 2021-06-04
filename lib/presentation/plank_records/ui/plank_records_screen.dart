@@ -28,8 +28,7 @@ class PlankRecordBody extends StatelessWidget {
         return state.when(
             initial: () => _buildInitial(),
             loading: () => _buildLoading(),
-            complete: (totalMinutes, personalBest, _, records) =>
-                _buildComplete(totalMinutes, personalBest, records),
+            complete: (____, ___, _, __) => const ProgressView(),
             error: () => _buildError());
       },
     );
@@ -41,11 +40,6 @@ class PlankRecordBody extends StatelessWidget {
 
   Widget _buildLoading() {
     return const CircularProgressIndicator();
-  }
-
-  Widget _buildComplete(
-      String totalMinutes, String personalBest, List<PlankInfo> records) {
-    return const ProgressView();
   }
 
   Widget _buildError() {

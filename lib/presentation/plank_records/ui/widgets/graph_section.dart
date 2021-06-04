@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plank_me/core/utils/time_utils.dart';
 import 'package:plank_me/presentation/plank_records/cubit/plankrecord_cubit.dart';
 
 import '../../../ui_utils/ui_styles.dart';
@@ -50,13 +51,36 @@ class _Graph extends StatelessWidget {
           color: AppColors.light,
           child: BarChart(
             BarChartData(
+              barTouchData: BarTouchData(
+                touchTooltipData: BarTouchTooltipData(
+                  tooltipBgColor: AppColors.background,
+                  getTooltipItem: (group, groupIndex, rod, rodIndex) =>
+                      BarTooltipItem(
+                    '${TimeUtils.toDay(records[rodIndex].dateTime)} \n',
+                    context.text.subtitle1!.withColor(AppColors.dark),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: records[rodIndex].showPlankTime,
+                        style: context.text.caption
+                      )
+                    ]
+                  ),
+                ),
+              ),
               titlesData: FlTitlesData(
-                bottomTitles: _buildBottomLabel(context),
+                bottomTitles: _buildBottomLabel(context, records),
                 leftTitles: SideTitles(showTitles: false),
               ),
-              barGroups: showingGroups(),
+              barGroups: showingGroups(records),
               borderData: FlBorderData(show: false),
+              alignment: BarChartAlignment.center,
+              gridData: FlGridData(
+                show: true,
+                drawVerticalLine: true,
+              ),
             ),
+            swapAnimationDuration: const Duration(milliseconds: 500),
+            swapAnimationCurve: Curves.easeIn,
           ),
         ),
         orElse: () => const SizedBox(),
@@ -68,68 +92,38 @@ class _Graph extends StatelessWidget {
     int xValue,
     double yValue,
   ) {
-    return BarChartGroupData(x: xValue, barRods: [
-      BarChartRodData(
-        y: yValue,
-        colors: [
-          AppColors.primaryDark,
-          AppColors.primary,
-        ],
-        width: 22.0,
-        // backDrawRodData: BackgroundBarChartRodData(
-        //   show: true,
-        //   colors: [AppColors.background],
-        //   y: 24.0,
-        // ),
-      )
-    ]);
-  }
-
-  SideTitles _buildBottomLabel(BuildContext context) {
-    return SideTitles(
-      margin: 16.0,
-      getTextStyles: (_) => context.text.bodyText1!.withColor(AppColors.dark),
-      getTitles: (value) {
-        switch (value.toInt()) {
-          case 0:
-            return 'M';
-          case 1:
-            return 'T';
-          case 2:
-            return 'W';
-          case 3:
-            return 'T';
-          case 4:
-            return 'F';
-          case 5:
-            return 'S';
-          case 6:
-            return 'S';
-          default:
-            return '';
-        }
-      },
+    return BarChartGroupData(
+      x: xValue,
+      barRods: [
+        BarChartRodData(
+          y: yValue,
+          colors: [
+            AppColors.primaryDark,
+            AppColors.primary,
+          ],
+          width: 26.0,
+          backDrawRodData: BackgroundBarChartRodData(
+            show: true,
+            colors: [AppColors.background],
+            y: 15.0,
+          ),
+        )
+      ],
     );
   }
 
-  List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
-        switch (i) {
-          case 0:
-            return _buildBarItem(0, 5);
-          case 1:
-            return _buildBarItem(1, 6.5);
-          case 2:
-            return _buildBarItem(2, 5);
-          case 3:
-            return _buildBarItem(3, 7.5);
-          case 4:
-            return _buildBarItem(4, 9);
-          case 5:
-            return _buildBarItem(5, 11.5);
-          case 6:
-            return _buildBarItem(6, 6.5);
-          default:
-            return throw Error();
-        }
+  SideTitles _buildBottomLabel(
+      BuildContext context, List<PlankRecordViewModel> records) {
+    return SideTitles(
+        margin: 8.0,
+        getTextStyles: (_) => context.text.caption!.withColor(AppColors.dark),
+        showTitles: true,
+        getTitles: (barIndex) =>
+            TimeUtils.toMonthDay(records[barIndex.toInt()].dateTime));
+  }
+
+  List<BarChartGroupData> showingGroups(List<PlankRecordViewModel> records) =>
+      List.generate(records.length, (i) {
+        return _buildBarItem(i, records[i].timeInSeconds.toDouble());
       });
 }

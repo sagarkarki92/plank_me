@@ -28,7 +28,7 @@ class _$PlankrecordStateTearOff {
       {required String totalMinutes,
       required String personalBest,
       required String plankMessage,
-      required List<PlankInfo> records}) {
+      required List<PlankRecordViewModel> records}) {
     return Complete(
       totalMinutes: totalMinutes,
       personalBest: personalBest,
@@ -52,7 +52,7 @@ mixin _$PlankrecordState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankInfo> records)
+            String plankMessage, List<PlankRecordViewModel> records)
         complete,
     required TResult Function() error,
   }) =>
@@ -62,7 +62,7 @@ mixin _$PlankrecordState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankInfo> records)?
+            String plankMessage, List<PlankRecordViewModel> records)?
         complete,
     TResult Function()? error,
     required TResult orElse(),
@@ -144,7 +144,7 @@ class _$Initial implements Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankInfo> records)
+            String plankMessage, List<PlankRecordViewModel> records)
         complete,
     required TResult Function() error,
   }) {
@@ -157,7 +157,7 @@ class _$Initial implements Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankInfo> records)?
+            String plankMessage, List<PlankRecordViewModel> records)?
         complete,
     TResult Function()? error,
     required TResult orElse(),
@@ -239,7 +239,7 @@ class _$Loading implements Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankInfo> records)
+            String plankMessage, List<PlankRecordViewModel> records)
         complete,
     required TResult Function() error,
   }) {
@@ -252,7 +252,7 @@ class _$Loading implements Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankInfo> records)?
+            String plankMessage, List<PlankRecordViewModel> records)?
         complete,
     TResult Function()? error,
     required TResult orElse(),
@@ -302,7 +302,7 @@ abstract class $CompleteCopyWith<$Res> {
       {String totalMinutes,
       String personalBest,
       String plankMessage,
-      List<PlankInfo> records});
+      List<PlankRecordViewModel> records});
 }
 
 /// @nodoc
@@ -337,7 +337,7 @@ class _$CompleteCopyWithImpl<$Res> extends _$PlankrecordStateCopyWithImpl<$Res>
       records: records == freezed
           ? _value.records
           : records // ignore: cast_nullable_to_non_nullable
-              as List<PlankInfo>,
+              as List<PlankRecordViewModel>,
     ));
   }
 }
@@ -358,7 +358,7 @@ class _$Complete implements Complete {
   @override
   final String plankMessage;
   @override
-  final List<PlankInfo> records;
+  final List<PlankRecordViewModel> records;
 
   @override
   String toString() {
@@ -401,7 +401,7 @@ class _$Complete implements Complete {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankInfo> records)
+            String plankMessage, List<PlankRecordViewModel> records)
         complete,
     required TResult Function() error,
   }) {
@@ -414,7 +414,7 @@ class _$Complete implements Complete {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankInfo> records)?
+            String plankMessage, List<PlankRecordViewModel> records)?
         complete,
     TResult Function()? error,
     required TResult orElse(),
@@ -457,12 +457,12 @@ abstract class Complete implements PlankrecordState {
       {required String totalMinutes,
       required String personalBest,
       required String plankMessage,
-      required List<PlankInfo> records}) = _$Complete;
+      required List<PlankRecordViewModel> records}) = _$Complete;
 
   String get totalMinutes => throw _privateConstructorUsedError;
   String get personalBest => throw _privateConstructorUsedError;
   String get plankMessage => throw _privateConstructorUsedError;
-  List<PlankInfo> get records => throw _privateConstructorUsedError;
+  List<PlankRecordViewModel> get records => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CompleteCopyWith<Complete> get copyWith =>
       throw _privateConstructorUsedError;
@@ -508,7 +508,7 @@ class _$Error implements Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankInfo> records)
+            String plankMessage, List<PlankRecordViewModel> records)
         complete,
     required TResult Function() error,
   }) {
@@ -521,7 +521,7 @@ class _$Error implements Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankInfo> records)?
+            String plankMessage, List<PlankRecordViewModel> records)?
         complete,
     TResult Function()? error,
     required TResult orElse(),
