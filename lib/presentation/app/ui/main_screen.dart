@@ -20,32 +20,40 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          key: _scaffoldKey,
-          endDrawer: DrawerContent(_scaffoldKey),
-          appBar: AppBar(
-            title: const Header(),
-            backgroundColor: AppColors.background,
-            elevation: 0,
-            actions: [
-              IconButton(
-                onPressed: () {
-                  _scaffoldKey.currentState!.openEndDrawer();
-                },
-                icon: const FaIcon(
-                  FontAwesomeIcons.bars,
-                  color: Colors.black,
-                  size: 18.0,
-                ),
-              ),
-            ],
-          ),
-          body: BlocBuilder<AppCubit, AppState>(
-            builder: (context, state) {
-              return state.maybeWhen(
-                  loadScreen: (tabIndex, tabs) => _view[tabIndex],
-                  orElse: () => Container());
+      key: _scaffoldKey,
+      endDrawer: DrawerContent(_scaffoldKey),
+      appBar: AppBar(
+        title: const Header(),
+        backgroundColor: AppColors.background,
+        elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+              _scaffoldKey.currentState!.openEndDrawer();
             },
+            icon: const FaIcon(
+              FontAwesomeIcons.bars,
+              color: Colors.black,
+              size: 18.0,
+            ),
           ),
+        ],
+      ),
+      body: BlocBuilder<AppCubit, AppState>(
+        builder: (context, state) {
+          return state.maybeWhen(
+              loadScreen: (tabIndex, tabs) => _buildView(_view[tabIndex]),
+              orElse: () => Container());
+        },
+      ),
+    );
+  }
+
+  Widget _buildView(Widget child) {
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 500),
+      child: child,
+      switchInCurve: Curves.elasticInOut,
     );
   }
 }

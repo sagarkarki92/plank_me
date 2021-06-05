@@ -24,7 +24,7 @@ class HeaderSection extends StatelessWidget {
               const SizedBox(width: 12.0),
               Expanded(
                 child: CardItem(
-                  label: 'Total planked min',
+                  label: 'Total planked',
                   textValue: RichText(
                     text: TextSpan(children: [
                       TextSpan(

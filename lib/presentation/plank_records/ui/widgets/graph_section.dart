@@ -25,14 +25,14 @@ class GraphSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 18.0),
+            padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 14.0),
             child: Text(
               'Results',
             ),
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.symmetric(vertical:24.0),
               child: _Graph(),
             ),
           ),
@@ -56,11 +56,11 @@ class _Graph extends StatelessWidget {
                   tooltipBgColor: AppColors.background,
                   getTooltipItem: (group, groupIndex, rod, rodIndex) =>
                       BarTooltipItem(
-                    '${TimeUtils.toDay(records[rodIndex].dateTime)} \n',
+                    '${TimeUtils.toDay(records[groupIndex].dateTime)} \n',
                     context.text.subtitle1!.withColor(AppColors.dark),
                     children: <TextSpan>[
                       TextSpan(
-                        text: records[rodIndex].showPlankTime,
+                        text: records[groupIndex].showPlankTime,
                         style: context.text.caption
                       )
                     ]
@@ -74,10 +74,6 @@ class _Graph extends StatelessWidget {
               barGroups: showingGroups(records),
               borderData: FlBorderData(show: false),
               alignment: BarChartAlignment.center,
-              gridData: FlGridData(
-                show: true,
-                drawVerticalLine: true,
-              ),
             ),
             swapAnimationDuration: const Duration(milliseconds: 500),
             swapAnimationCurve: Curves.easeIn,
