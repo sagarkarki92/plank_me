@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:plank_me/core/service_locator.dart';
+import 'package:plank_me/presentation/app/app_service/app_navigator.dart';
 import 'package:plank_me/presentation/app/cubit/app_cubit.dart';
 
 import '../../../ui_utils/ui_styles.dart';
@@ -19,30 +21,43 @@ class DrawerContent extends StatelessWidget {
             padding: const EdgeInsets.all(12.0),
             width: 120,
             color: AppColors.lightAccent,
-            child: ListView.separated(
-                physics: const BouncingScrollPhysics(),
-                itemCount: tabs.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 18.0),
-                itemBuilder: (context, index) {
-                  final e = tabs[index];
-                  return index == activeIndex
-                      ? _ActiveDrawerItem(
-                          label: e.name,
-                          icon: e.iconWidget,
-                          onPressed: () {
-                            scaffoldKey.currentState!.openDrawer();
-                            context.read<AppCubit>().setScreen(index);
-                          },
-                        )
-                      : _DrawerItem(
-                          label: e.name,
-                          icon: e.iconWidget,
-                          onPressed: () {
-                            scaffoldKey.currentState!.openDrawer();
-                            context.read<AppCubit>().setScreen(index);
-                          },
-                        );
-                }),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView.separated(
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: tabs.length,
+                      separatorBuilder: (_, __) => const SizedBox(height: 18.0),
+                      itemBuilder: (context, index) {
+                        final e = tabs[index];
+                        return index == activeIndex
+                            ? _ActiveDrawerItem(
+                                label: e.name,
+                                icon: e.iconWidget,
+                                onPressed: () {
+                                  scaffoldKey.currentState!.openDrawer();
+                                  context.read<AppCubit>().setScreen(index);
+                                },
+                              )
+                            : _DrawerItem(
+                                label: e.name,
+                                icon: e.iconWidget,
+                                onPressed: () {
+                                  scaffoldKey.currentState!.openDrawer();
+                                  context.read<AppCubit>().setScreen(index);
+                                },
+                              );
+                      }),
+                ),
+                TextButton(
+                  child: const Text('Configure'),
+                  onPressed: () {
+                    scaffoldKey.currentState!.openDrawer();
+                    locator<AppNavigator>().push(Routes.setting);
+                  },
+                )
+              ],
+            ),
           ),
           orElse: () => Container(),
         );

@@ -17,6 +17,7 @@ class PlankMe extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: AppConfig.appName,
       theme: AppTheme.light(),
+      onGenerateRoute: Routes.handler,
       home: context.read<AppCubit>().isSessionAvailable()
           ? _buildHomeScreen(context)
           : OnBoardingScreen(),
