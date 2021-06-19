@@ -13,6 +13,7 @@ class ApptextStyles {
         bodyText2: _body2,
         caption: _captions,
         button: _button,
+        subtitle1: _subtitle1,
       );
 
   static TextStyle get _baseHeadline => TextStyle(
@@ -58,5 +59,8 @@ class ApptextStyles {
         fontFamily: AppConfig.primaryFontFamily,
         color: AppColors.dark,
         fontWeight: FontWeight.w600,
+      );
+  static TextStyle get _subtitle1 => const TextStyle(
+        color: AppColors.darkAccent,
       );
 }

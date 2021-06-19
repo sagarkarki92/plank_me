@@ -26,6 +26,7 @@ class _UserEditState extends State<UserEdit> {
           padding: const EdgeInsets.fromLTRB(0.0, 0.0, 8.0, 12.0),
           child: TextField(
             controller: textController,
+            autofocus: true,
           ),
         ),
         Align(
