@@ -1,22 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:plank_me/presentation/setting/ui/widgets/dark_mode.dart';
-import 'package:plank_me/presentation/setting/ui/widgets/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../core/service_locator.dart';
+import '../../../repositories/user_repository.dart';
 import '../../ui_utils/ui_styles.dart';
+import '../cubit/setting_cubit.dart';
+import 'widgets/dark_mode.dart';
+import 'widgets/widgets.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Settings',
-          style: context.text.headline6,
+    return BlocProvider(
+      create: (context) =>
+          SettingCubit(userRepository: locator<UserRepository>())
+            ..getSettingsData(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Settings',
+            style: context.text.headline6,
+          ),
+          backgroundColor: context.theme.scaffoldBackgroundColor,
         ),
-        backgroundColor: context.theme.scaffoldBackgroundColor,
+        body: const _SettingBody(),
       ),
-      body: const _SettingBody(),
     );
   }
 }
@@ -32,10 +42,7 @@ class _SettingBody extends StatelessWidget {
       padding: const EdgeInsets.all(12.0),
       child: Column(
         children: [
-          const MaterialTile(
-            label: 'Username',
-            child: UserEdit(),
-          ),
+          const UsernameSection(),
           const SizedBox(height: 16.0),
           const MaterialTile(
             label: 'Mode',
@@ -43,6 +50,33 @@ class _SettingBody extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class UsernameSection extends StatelessWidget {
+  const UsernameSection({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SettingCubit, SettingState>(
+      builder: (context, state) {
+        return state.maybeWhen(
+          loaded: (isDarkMode, username) => MaterialTile(
+            label: 'Username',
+            child: UserDisplay(username: username),
+          ),
+          editing: (isDarkMode, username) => MaterialTile(
+            label: 'Username',
+            child: UserEdit(
+              username: username,
+            ),
+          ),
+          orElse: () => Container(),
+        );
+      },
     );
   }
 }

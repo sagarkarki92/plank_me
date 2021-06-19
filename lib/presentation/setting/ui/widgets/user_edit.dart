@@ -1,16 +1,32 @@
 import 'package:flutter/material.dart';
-import './widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plank_me/presentation/setting/cubit/setting_cubit.dart';
 
-class UserEdit extends StatelessWidget {
-  const UserEdit({Key? key}) : super(key: key);
+class UserEdit extends StatefulWidget {
+  final String username;
+  const UserEdit({Key? key, required this.username}) : super(key: key);
+
+  @override
+  _UserEditState createState() => _UserEditState();
+}
+
+class _UserEditState extends State<UserEdit> {
+  late TextEditingController textController;
+  @override
+  void initState() {
+    textController = TextEditingController(text: widget.username);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.fromLTRB(0.0, 0.0, 8.0, 12.0),
-          child: TextField(),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0.0, 0.0, 8.0, 12.0),
+          child: TextField(
+            controller: textController,
+          ),
         ),
         Align(
           alignment: Alignment.bottomRight,
@@ -18,12 +34,14 @@ class UserEdit extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               TextButton(
-                onPressed: () {},
+                onPressed: () => context.read<SettingCubit>().loadSettingData(),
                 child: const Text('Cancel'),
               ),
               const SizedBox(width: 12.0),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () => context
+                    .read<SettingCubit>()
+                    .renameUserName(textController.text),
                 child: const Text('Save'),
               ),
             ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../cubit/setting_cubit.dart';
 
 class DarkMode extends StatelessWidget {
   const DarkMode({Key? key}) : super(key: key);
@@ -10,8 +12,20 @@ class DarkMode extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const Text('Dark Mode'),
-        Switch(value: true, onChanged: (isTrue) {})
+        BlocBuilder<SettingCubit, SettingState>(
+          builder: (context, state) => state.maybeWhen(
+            orElse: () => SizedBox(),
+            loaded: (isDarkMode, _) => _buildSwitch(context, isDarkMode),
+            editing: (isDarkMode, _) => _buildSwitch(context, isDarkMode),
+          ),
+        )
       ],
     );
+  }
+
+  Widget _buildSwitch(BuildContext context, bool isDarkMode) {
+    return Switch(
+        value: isDarkMode,
+        onChanged: (value) => context.read<SettingCubit>().toggleDarkMode());
   }
 }

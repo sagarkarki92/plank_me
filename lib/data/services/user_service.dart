@@ -7,15 +7,12 @@ import 'package:plank_me/repositories/user_repository.dart';
 class UserService implements UserRepository {
   Box localUser = Hive.box(StorageKeys.userDetails);
 
-  User? user;
-
   @override
   User getUserDetails() {
     try {
-      user ??= User(
+      return User(
           gender: localUser.get('gender') as String,
           name: localUser.get('name') as String);
-      return user!;
     } catch (e) {
       throw NoUserException();
     }
