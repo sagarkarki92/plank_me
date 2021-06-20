@@ -13,30 +13,34 @@ class GraphSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: AppColors.light,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(24.0),
-          topRight: Radius.circular(24.0),
+    return SlideAnimation(
+      start: const Offset(0.0, 1.0),
+      curve:Curves.easeInQuart,
+      child: Container(
+        decoration: const BoxDecoration(
+          color: AppColors.light,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(24.0),
+            topRight: Radius.circular(24.0),
+          ),
         ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 14.0),
-            child: Text(
-              'Results',
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 14.0),
+              child: Text(
+                'Results',
+              ),
             ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical:24.0),
-              child: _Graph(),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24.0),
+                child: _Graph(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -56,15 +60,13 @@ class _Graph extends StatelessWidget {
                   tooltipBgColor: AppColors.background,
                   getTooltipItem: (group, groupIndex, rod, rodIndex) =>
                       BarTooltipItem(
-                    '${TimeUtils.toDay(records[groupIndex].dateTime)} \n',
-                    context.text.subtitle1!.withColor(AppColors.dark),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: records[groupIndex].showPlankTime,
-                        style: context.text.caption
-                      )
-                    ]
-                  ),
+                          '${TimeUtils.toDay(records[groupIndex].dateTime)} \n',
+                          context.text.subtitle1!.withColor(AppColors.dark),
+                          children: <TextSpan>[
+                        TextSpan(
+                            text: records[groupIndex].showPlankTime,
+                            style: context.text.caption)
+                      ]),
                 ),
               ),
               titlesData: FlTitlesData(

@@ -23,21 +23,24 @@ class HeaderSection extends StatelessWidget {
               ),
               const SizedBox(width: 12.0),
               Expanded(
-                child: CardItem(
-                  label: 'Total planked',
-                  textValue: RichText(
-                    text: TextSpan(children: [
-                      TextSpan(
-                        text: totalMinutes,
-                        style:
-                            context.text.headline5!.withColor(AppColors.accent),
-                      ),
-                      TextSpan(
-                        text: 'mins',
-                        style:
-                            context.text.caption!.withColor(AppColors.accent),
-                      ),
-                    ]),
+                child: SlideAnimation(
+                  start: Offset(-1.0, 0.0),
+                  child: CardItem(
+                    label: 'Total planked',
+                    textValue: RichText(
+                      text: TextSpan(children: [
+                        TextSpan(
+                          text: totalMinutes,
+                          style: context.text.headline5!
+                              .withColor(AppColors.accent),
+                        ),
+                        TextSpan(
+                          text: 'mins',
+                          style:
+                              context.text.caption!.withColor(AppColors.accent),
+                        ),
+                      ]),
+                    ),
                   ),
                 ),
               ),
