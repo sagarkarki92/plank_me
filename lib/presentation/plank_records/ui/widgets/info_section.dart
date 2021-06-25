@@ -14,7 +14,7 @@ class InfoSection extends StatelessWidget {
     return BlocBuilder<PlankrecordCubit, PlankrecordState>(
       builder: (context, state) {
         return state.maybeWhen(
-            complete: (___, __, plankMessage, _) => Material(
+            complete: (___, __, plankMessage,____, _) => Material(
                   animationDuration: const Duration(seconds: 1),
                   borderRadius: BorderRadius.circular(12.0),
                   color: AppColors.accent.withOpacity(0.2),

@@ -28,11 +28,13 @@ class _$PlankrecordStateTearOff {
       {required String totalMinutes,
       required String personalBest,
       required String plankMessage,
+      required int personalBestInt,
       required List<PlankRecordViewModel> records}) {
     return Complete(
       totalMinutes: totalMinutes,
       personalBest: personalBest,
       plankMessage: plankMessage,
+      personalBestInt: personalBestInt,
       records: records,
     );
   }
@@ -51,8 +53,12 @@ mixin _$PlankrecordState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankRecordViewModel> records)
+    required TResult Function(
+            String totalMinutes,
+            String personalBest,
+            String plankMessage,
+            int personalBestInt,
+            List<PlankRecordViewModel> records)
         complete,
     required TResult Function() error,
   }) =>
@@ -61,8 +67,12 @@ mixin _$PlankrecordState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankRecordViewModel> records)?
+    TResult Function(
+            String totalMinutes,
+            String personalBest,
+            String plankMessage,
+            int personalBestInt,
+            List<PlankRecordViewModel> records)?
         complete,
     TResult Function()? error,
     required TResult orElse(),
@@ -143,8 +153,12 @@ class _$Initial implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankRecordViewModel> records)
+    required TResult Function(
+            String totalMinutes,
+            String personalBest,
+            String plankMessage,
+            int personalBestInt,
+            List<PlankRecordViewModel> records)
         complete,
     required TResult Function() error,
   }) {
@@ -156,8 +170,12 @@ class _$Initial implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankRecordViewModel> records)?
+    TResult Function(
+            String totalMinutes,
+            String personalBest,
+            String plankMessage,
+            int personalBestInt,
+            List<PlankRecordViewModel> records)?
         complete,
     TResult Function()? error,
     required TResult orElse(),
@@ -238,8 +256,12 @@ class _$Loading implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankRecordViewModel> records)
+    required TResult Function(
+            String totalMinutes,
+            String personalBest,
+            String plankMessage,
+            int personalBestInt,
+            List<PlankRecordViewModel> records)
         complete,
     required TResult Function() error,
   }) {
@@ -251,8 +273,12 @@ class _$Loading implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankRecordViewModel> records)?
+    TResult Function(
+            String totalMinutes,
+            String personalBest,
+            String plankMessage,
+            int personalBestInt,
+            List<PlankRecordViewModel> records)?
         complete,
     TResult Function()? error,
     required TResult orElse(),
@@ -302,6 +328,7 @@ abstract class $CompleteCopyWith<$Res> {
       {String totalMinutes,
       String personalBest,
       String plankMessage,
+      int personalBestInt,
       List<PlankRecordViewModel> records});
 }
 
@@ -319,6 +346,7 @@ class _$CompleteCopyWithImpl<$Res> extends _$PlankrecordStateCopyWithImpl<$Res>
     Object? totalMinutes = freezed,
     Object? personalBest = freezed,
     Object? plankMessage = freezed,
+    Object? personalBestInt = freezed,
     Object? records = freezed,
   }) {
     return _then(Complete(
@@ -334,6 +362,10 @@ class _$CompleteCopyWithImpl<$Res> extends _$PlankrecordStateCopyWithImpl<$Res>
           ? _value.plankMessage
           : plankMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      personalBestInt: personalBestInt == freezed
+          ? _value.personalBestInt
+          : personalBestInt // ignore: cast_nullable_to_non_nullable
+              as int,
       records: records == freezed
           ? _value.records
           : records // ignore: cast_nullable_to_non_nullable
@@ -349,6 +381,7 @@ class _$Complete implements Complete {
       {required this.totalMinutes,
       required this.personalBest,
       required this.plankMessage,
+      required this.personalBestInt,
       required this.records});
 
   @override
@@ -358,11 +391,13 @@ class _$Complete implements Complete {
   @override
   final String plankMessage;
   @override
+  final int personalBestInt;
+  @override
   final List<PlankRecordViewModel> records;
 
   @override
   String toString() {
-    return 'PlankrecordState.complete(totalMinutes: $totalMinutes, personalBest: $personalBest, plankMessage: $plankMessage, records: $records)';
+    return 'PlankrecordState.complete(totalMinutes: $totalMinutes, personalBest: $personalBest, plankMessage: $plankMessage, personalBestInt: $personalBestInt, records: $records)';
   }
 
   @override
@@ -378,6 +413,9 @@ class _$Complete implements Complete {
             (identical(other.plankMessage, plankMessage) ||
                 const DeepCollectionEquality()
                     .equals(other.plankMessage, plankMessage)) &&
+            (identical(other.personalBestInt, personalBestInt) ||
+                const DeepCollectionEquality()
+                    .equals(other.personalBestInt, personalBestInt)) &&
             (identical(other.records, records) ||
                 const DeepCollectionEquality().equals(other.records, records)));
   }
@@ -388,6 +426,7 @@ class _$Complete implements Complete {
       const DeepCollectionEquality().hash(totalMinutes) ^
       const DeepCollectionEquality().hash(personalBest) ^
       const DeepCollectionEquality().hash(plankMessage) ^
+      const DeepCollectionEquality().hash(personalBestInt) ^
       const DeepCollectionEquality().hash(records);
 
   @JsonKey(ignore: true)
@@ -400,12 +439,17 @@ class _$Complete implements Complete {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankRecordViewModel> records)
+    required TResult Function(
+            String totalMinutes,
+            String personalBest,
+            String plankMessage,
+            int personalBestInt,
+            List<PlankRecordViewModel> records)
         complete,
     required TResult Function() error,
   }) {
-    return complete(totalMinutes, personalBest, plankMessage, records);
+    return complete(
+        totalMinutes, personalBest, plankMessage, personalBestInt, records);
   }
 
   @override
@@ -413,14 +457,19 @@ class _$Complete implements Complete {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankRecordViewModel> records)?
+    TResult Function(
+            String totalMinutes,
+            String personalBest,
+            String plankMessage,
+            int personalBestInt,
+            List<PlankRecordViewModel> records)?
         complete,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (complete != null) {
-      return complete(totalMinutes, personalBest, plankMessage, records);
+      return complete(
+          totalMinutes, personalBest, plankMessage, personalBestInt, records);
     }
     return orElse();
   }
@@ -457,11 +506,13 @@ abstract class Complete implements PlankrecordState {
       {required String totalMinutes,
       required String personalBest,
       required String plankMessage,
+      required int personalBestInt,
       required List<PlankRecordViewModel> records}) = _$Complete;
 
   String get totalMinutes => throw _privateConstructorUsedError;
   String get personalBest => throw _privateConstructorUsedError;
   String get plankMessage => throw _privateConstructorUsedError;
+  int get personalBestInt => throw _privateConstructorUsedError;
   List<PlankRecordViewModel> get records => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CompleteCopyWith<Complete> get copyWith =>
@@ -507,8 +558,12 @@ class _$Error implements Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankRecordViewModel> records)
+    required TResult Function(
+            String totalMinutes,
+            String personalBest,
+            String plankMessage,
+            int personalBestInt,
+            List<PlankRecordViewModel> records)
         complete,
     required TResult Function() error,
   }) {
@@ -520,8 +575,12 @@ class _$Error implements Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String totalMinutes, String personalBest,
-            String plankMessage, List<PlankRecordViewModel> records)?
+    TResult Function(
+            String totalMinutes,
+            String personalBest,
+            String plankMessage,
+            int personalBestInt,
+            List<PlankRecordViewModel> records)?
         complete,
     TResult Function()? error,
     required TResult orElse(),

@@ -10,7 +10,7 @@ class HeaderSection extends StatelessWidget {
     return BlocBuilder<PlankrecordCubit, PlankrecordState>(
       builder: (context, state) {
         return state.maybeWhen(
-          complete: (totalMinutes, personalBest, __, _) => Row(
+          complete: (totalMinutes, personalBest, __,____, _) => Row(
             children: [
               Expanded(
                 child: CardItem(

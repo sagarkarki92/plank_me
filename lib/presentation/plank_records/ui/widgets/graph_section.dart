@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plank_me/core/utils/time_utils.dart';
 import 'package:plank_me/presentation/plank_records/cubit/plankrecord_cubit.dart';
+import 'package:plank_me/presentation/plank_records/ui/widgets/graph_item.dart';
+import 'package:plank_me/presentation/plank_records/ui/widgets/widgets.dart';
 
 import '../../../ui_utils/ui_styles.dart';
 
@@ -15,7 +17,7 @@ class GraphSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return SlideAnimation(
       start: const Offset(0.0, 1.0),
-      curve:Curves.easeInQuart,
+      curve: Curves.easeInQuart,
       child: Container(
         decoration: const BoxDecoration(
           color: AppColors.light,
@@ -36,7 +38,7 @@ class GraphSection extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 24.0),
-                child: _Graph(),
+                child: const RecordGraph(),
               ),
             ),
           ],
@@ -51,7 +53,7 @@ class _Graph extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PlankrecordCubit, PlankrecordState>(
       builder: (context, state) => state.maybeWhen(
-        complete: (_, __, ___, records) => Container(
+        complete: (_, __, ___, ____,records) => Container(
           color: AppColors.light,
           child: BarChart(
             BarChartData(

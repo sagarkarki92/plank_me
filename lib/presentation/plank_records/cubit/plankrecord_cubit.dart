@@ -44,6 +44,7 @@ class PlankrecordCubit extends Cubit<PlankrecordState> {
       totalMinutes: TimeUtils.totalMinutes(totalPlankedTime),
       personalBest: TimeUtils.getShowTime(personalBest),
       plankMessage: plankMessage,
+      personalBestInt: personalBest,
       records: plankRecords,
     ));
   }

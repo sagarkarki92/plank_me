@@ -28,7 +28,7 @@ class PlankRecordBody extends StatelessWidget {
         return state.when(
             initial: () => _buildInitial(),
             loading: () => _buildLoading(),
-            complete: (____, ___, _, __) => const ProgressView(),
+            complete: (____, ___, _____, _, __) => const ProgressView(),
             error: () => _buildError());
       },
     );
