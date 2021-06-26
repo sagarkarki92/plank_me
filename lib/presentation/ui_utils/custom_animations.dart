@@ -5,12 +5,14 @@ class SlideAnimation extends StatefulWidget {
   final Offset start;
   final Offset end;
   final Widget child;
+  final Duration duration;
   final Curve curve;
   const SlideAnimation({
     Key? key,
     this.start = const Offset(1.0, 0),
     this.end = const Offset(0.0, 0.0),
     this.curve = Curves.easeIn,
+    this.duration = const Duration(milliseconds:500),
     required this.child,
   }) : super(key: key);
 
@@ -27,7 +29,7 @@ class _SlideAnimationState extends State<SlideAnimation>
   void initState() {
     super.initState();
     animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 500));
+        vsync: this, duration: widget.duration);
     animation = Tween(begin: widget.start, end: widget.end)
         .animate(CurvedAnimation(parent: animationController, curve: widget.curve));
 

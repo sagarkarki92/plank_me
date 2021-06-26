@@ -26,7 +26,7 @@ class GraphItem extends StatelessWidget {
   }
 }
 
-class _Bar extends StatefulWidget {
+class _Bar extends StatelessWidget {
   final PlankRecordViewModel record;
   final int totalTime;
 
@@ -37,16 +37,9 @@ class _Bar extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  __BarState createState() => __BarState();
-}
-
-class __BarState extends State<_Bar> {
-  bool isDetailShown = false;
-  @override
   Widget build(BuildContext context) {
     final double totalHeight = MediaQuery.of(context).size.height * 0.28;
-    final double plankTime =
-        (widget.record.timeInSeconds / widget.totalTime) * 100;
+    final double plankTime = (record.timeInSeconds / totalTime) * 100;
     final double height = (plankTime / 100) * totalHeight;
     const double width = 32.0;
     final borderRadius = BorderRadius.circular(24.0);
@@ -63,24 +56,99 @@ class __BarState extends State<_Bar> {
         ),
         Positioned(
           bottom: 0.0,
-          child: GestureDetector(
-            onLongPress: () {
-              setState(() {
-                print('Long Tapped!!');
-                isDetailShown = !isDetailShown;
-              });
-            },
-            child: Container(
-              height: height,
-              width: width,
-              decoration: BoxDecoration(
-                color: AppColors.primary,
-                borderRadius: borderRadius,
+          child: TapableContainer(
+            height: height,
+            width: width,
+            borderRadius: borderRadius,
+            data: record,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class TapableContainer extends StatefulWidget {
+  const TapableContainer({
+    Key? key,
+    required this.height,
+    required this.width,
+    required this.borderRadius,
+    required this.data,
+  }) : super(key: key);
+
+  final double height;
+  final double width;
+  final BorderRadius borderRadius;
+  final PlankRecordViewModel data;
+
+  @override
+  _TapableContainerState createState() => _TapableContainerState();
+}
+
+class _TapableContainerState extends State<TapableContainer> {
+  bool isDetailShown = false;
+
+  late OverlayEntry overlayEntry;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void showOverlayWidget() {
+    final RenderBox renderBox = context.findRenderObject()! as RenderBox;
+    final size = renderBox.size;
+    final offset = renderBox.localToGlobal(Offset.zero);
+    overlayEntry = OverlayEntry(
+      builder: (context) => Positioned(
+        left: offset.dx - 16,
+        bottom: size.height + 120,
+        child: SlideAnimation(
+          start: const Offset(0.0,1.0),
+           curve: Curves.elasticOut,
+          child: Material(
+            color: AppColors.background,
+            borderRadius: BorderRadius.circular(12.0),
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                children: [
+                  Text(widget.data.showPlankTime),
+                  const SizedBox(height: 8.0),
+                  Text(TimeUtils.toDay(widget.data.dateTime))
+                ],
               ),
             ),
           ),
         ),
-      ],
+      ),
+    );
+    Overlay.of(context)!.insert(overlayEntry);
+  }
+
+  void hideOverlayWidget() {
+    overlayEntry.remove();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onLongPressStart: (_) => showOverlayWidget(),
+      onLongPressEnd: (details) => hideOverlayWidget(),
+      child: Container(
+        height: widget.height,
+        width: widget.width,
+        decoration: BoxDecoration(
+            borderRadius: widget.borderRadius,
+            gradient: const LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  AppColors.primary,
+                  AppColors.primaryDark,
+                ])),
+      ),
     );
   }
 }
