@@ -29,16 +29,15 @@ class GraphSection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 14.0),
-              child: Text(
-                'Results',
-              ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 18.0, vertical: 14.0),
+              child: Text('Results', style: context.text.headline5),
             ),
-            Expanded(
+            const Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24.0),
-                child: const RecordGraph(),
+                padding: EdgeInsets.symmetric(vertical: 24.0),
+                child: RecordGraph(),
               ),
             ),
           ],
@@ -46,84 +45,4 @@ class GraphSection extends StatelessWidget {
       ),
     );
   }
-}
-
-class _Graph extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<PlankrecordCubit, PlankrecordState>(
-      builder: (context, state) => state.maybeWhen(
-        complete: (_, __, ___, ____,records) => Container(
-          color: AppColors.light,
-          child: BarChart(
-            BarChartData(
-              barTouchData: BarTouchData(
-                touchTooltipData: BarTouchTooltipData(
-                  tooltipBgColor: AppColors.background,
-                  getTooltipItem: (group, groupIndex, rod, rodIndex) =>
-                      BarTooltipItem(
-                          '${TimeUtils.toDay(records[groupIndex].dateTime)} \n',
-                          context.text.subtitle1!.withColor(AppColors.dark),
-                          children: <TextSpan>[
-                        TextSpan(
-                            text: records[groupIndex].showPlankTime,
-                            style: context.text.caption)
-                      ]),
-                ),
-              ),
-              titlesData: FlTitlesData(
-                bottomTitles: _buildBottomLabel(context, records),
-                leftTitles: SideTitles(showTitles: false),
-              ),
-              barGroups: showingGroups(records),
-              borderData: FlBorderData(show: false),
-              alignment: BarChartAlignment.center,
-            ),
-            swapAnimationDuration: const Duration(milliseconds: 500),
-            swapAnimationCurve: Curves.easeIn,
-          ),
-        ),
-        orElse: () => const SizedBox(),
-      ),
-    );
-  }
-
-  BarChartGroupData _buildBarItem(
-    int xValue,
-    double yValue,
-  ) {
-    return BarChartGroupData(
-      x: xValue,
-      barRods: [
-        BarChartRodData(
-          y: yValue,
-          colors: [
-            AppColors.primaryDark,
-            AppColors.primary,
-          ],
-          width: 26.0,
-          backDrawRodData: BackgroundBarChartRodData(
-            show: true,
-            colors: [AppColors.background],
-            y: 15.0,
-          ),
-        )
-      ],
-    );
-  }
-
-  SideTitles _buildBottomLabel(
-      BuildContext context, List<PlankRecordViewModel> records) {
-    return SideTitles(
-        margin: 8.0,
-        getTextStyles: (_) => context.text.caption!.withColor(AppColors.dark),
-        showTitles: true,
-        getTitles: (barIndex) =>
-            TimeUtils.toMonthDay(records[barIndex.toInt()].dateTime));
-  }
-
-  List<BarChartGroupData> showingGroups(List<PlankRecordViewModel> records) =>
-      List.generate(records.length, (i) {
-        return _buildBarItem(i, records[i].timeInSeconds.toDouble());
-      });
 }

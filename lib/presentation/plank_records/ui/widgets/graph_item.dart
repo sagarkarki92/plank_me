@@ -105,17 +105,19 @@ class _TapableContainerState extends State<TapableContainer> {
         left: offset.dx - 16,
         bottom: size.height + 120,
         child: SlideAnimation(
-          start: const Offset(0.0,1.0),
-           curve: Curves.elasticOut,
+          start: const Offset(0.0, 1.0),
+          curve: Curves.elasticOut,
           child: Material(
             color: AppColors.background,
+            elevation: 12.0,
+            shadowColor: AppColors.lightAccent,
             borderRadius: BorderRadius.circular(12.0),
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
                 children: [
                   Text(widget.data.showPlankTime),
-                  const SizedBox(height: 8.0),
+                  const SizedBox(height: 0.0),
                   Text(TimeUtils.toDay(widget.data.dateTime))
                 ],
               ),
@@ -140,14 +142,16 @@ class _TapableContainerState extends State<TapableContainer> {
         height: widget.height,
         width: widget.width,
         decoration: BoxDecoration(
-            borderRadius: widget.borderRadius,
-            gradient: const LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  AppColors.primary,
-                  AppColors.primaryDark,
-                ])),
+          borderRadius: widget.borderRadius,
+          gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              AppColors.primary,
+              AppColors.primaryDark,
+            ],
+          ),
+        ),
       ),
     );
   }
