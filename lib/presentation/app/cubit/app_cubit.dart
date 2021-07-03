@@ -22,15 +22,15 @@ class ViewItem {
 final List<ViewItem> _viewItems = [
   ViewItem(
     'Timer',
-    FontAwesomeIcons.addressBook,
+    FontAwesomeIcons.stopwatch
   ),
   ViewItem(
     'My Progress',
-    FontAwesomeIcons.projectDiagram,
+    FontAwesomeIcons.chartBar,
   ),
   ViewItem(
     'About Plank',
-    FontAwesomeIcons.addressCard,
+    FontAwesomeIcons.info,
   ),
 ];
 
