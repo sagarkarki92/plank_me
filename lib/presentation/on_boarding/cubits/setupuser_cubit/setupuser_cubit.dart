@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:plank_me/data/models/user.dart';
 import 'package:plank_me/presentation/app/app_service/base_cubit.dart';
+import 'package:plank_me/presentation/app/cubit/app_cubit.dart';
 import 'package:plank_me/repositories/user_repository.dart';
 
 import '../../../screens.dart';
@@ -13,9 +14,13 @@ enum UserType { male, female }
 
 class SetupuserCubit extends BaseCubit<SetupuserState> {
   final UserRepository userRepository;
+  final AppCubit appCubit;
   UserType _userType = UserType.male;
   String username = '';
-  SetupuserCubit(this.userRepository) : super(const SetupuserState.initial());
+  SetupuserCubit({
+    required this.userRepository,
+    required this.appCubit,
+  }) : super(const SetupuserState.initial());
 
   UserType get userType => _userType;
 
@@ -34,9 +39,10 @@ class SetupuserCubit extends BaseCubit<SetupuserState> {
 
   void setUser() {
     //set user locally
-    userRepository.setUserDetails(User(
-        name: username,
-        gender: _userType == UserType.male ? 'male' : 'female'));
+    final _user = User(
+        name: username, gender: _userType == UserType.male ? 'male' : 'female');
+    userRepository.setUserDetails(_user);
+    appCubit.setUser(_user);
     emit(const Success());
   }
 }

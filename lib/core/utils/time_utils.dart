@@ -1,4 +1,8 @@
+import 'package:intl/intl.dart';
+
 class TimeUtils {
+  static String totalMinutes(int timeInSeconds) =>
+      '${_getMinutes(timeInSeconds)}.${_getSeconds(timeInSeconds)}';
   static String getShowTime(int timeInSeconds) =>
       '${_getMinutes(timeInSeconds)} : ${_getSeconds(timeInSeconds)}';
   static String getShowTimeString(int timeInSeconds) =>
@@ -19,5 +23,12 @@ class TimeUtils {
     final DateTime dt =
         DateTime(now.year, now.month, now.day + 1, hour, minutes);
     return dt;
+  }
+
+  static String toMonthDay(DateTime dt) {
+    return DateFormat.MMMd().format(dt);
+  }
+  static String toDay(DateTime dt) {
+    return DateFormat.EEEE().format(dt);
   }
 }

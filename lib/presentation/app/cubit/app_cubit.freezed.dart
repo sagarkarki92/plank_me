@@ -16,16 +16,15 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AppStateTearOff {
   const _$AppStateTearOff();
 
-  _Initial initial() {
-    return const _Initial();
+  Initial initial() {
+    return const Initial();
   }
 
-  _UserAvailable userAvailable() {
-    return const _UserAvailable();
-  }
-
-  _UserNotAvailable userNotAvailable() {
-    return const _UserNotAvailable();
+  LoadScreen loadScreen(int tabIndex, List<ViewItem> tabs) {
+    return LoadScreen(
+      tabIndex,
+      tabs,
+    );
   }
 }
 
@@ -37,30 +36,26 @@ mixin _$AppState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() userAvailable,
-    required TResult Function() userNotAvailable,
+    required TResult Function(int tabIndex, List<ViewItem> tabs) loadScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? userAvailable,
-    TResult Function()? userNotAvailable,
+    TResult Function(int tabIndex, List<ViewItem> tabs)? loadScreen,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_UserAvailable value) userAvailable,
-    required TResult Function(_UserNotAvailable value) userNotAvailable,
+    required TResult Function(Initial value) initial,
+    required TResult Function(LoadScreen value) loadScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_UserAvailable value)? userAvailable,
-    TResult Function(_UserNotAvailable value)? userNotAvailable,
+    TResult Function(Initial value)? initial,
+    TResult Function(LoadScreen value)? loadScreen,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -82,25 +77,25 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class $InitialCopyWith<$Res> {
+  factory $InitialCopyWith(Initial value, $Res Function(Initial) then) =
+      _$InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
+class _$InitialCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
+    implements $InitialCopyWith<$Res> {
+  _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
+      : super(_value, (v) => _then(v as Initial));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  Initial get _value => super._value as Initial;
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$Initial implements Initial {
+  const _$Initial();
 
   @override
   String toString() {
@@ -109,7 +104,7 @@ class _$_Initial implements _Initial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
+    return identical(this, other) || (other is Initial);
   }
 
   @override
@@ -119,8 +114,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() userAvailable,
-    required TResult Function() userNotAvailable,
+    required TResult Function(int tabIndex, List<ViewItem> tabs) loadScreen,
   }) {
     return initial();
   }
@@ -129,8 +123,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? userAvailable,
-    TResult Function()? userNotAvailable,
+    TResult Function(int tabIndex, List<ViewItem> tabs)? loadScreen,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -142,9 +135,8 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_UserAvailable value) userAvailable,
-    required TResult Function(_UserNotAvailable value) userNotAvailable,
+    required TResult Function(Initial value) initial,
+    required TResult Function(LoadScreen value) loadScreen,
   }) {
     return initial(this);
   }
@@ -152,9 +144,8 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_UserAvailable value)? userAvailable,
-    TResult Function(_UserNotAvailable value)? userNotAvailable,
+    TResult Function(Initial value)? initial,
+    TResult Function(LoadScreen value)? loadScreen,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -164,66 +155,100 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements AppState {
-  const factory _Initial() = _$_Initial;
+abstract class Initial implements AppState {
+  const factory Initial() = _$Initial;
 }
 
 /// @nodoc
-abstract class _$UserAvailableCopyWith<$Res> {
-  factory _$UserAvailableCopyWith(
-          _UserAvailable value, $Res Function(_UserAvailable) then) =
-      __$UserAvailableCopyWithImpl<$Res>;
+abstract class $LoadScreenCopyWith<$Res> {
+  factory $LoadScreenCopyWith(
+          LoadScreen value, $Res Function(LoadScreen) then) =
+      _$LoadScreenCopyWithImpl<$Res>;
+  $Res call({int tabIndex, List<ViewItem> tabs});
 }
 
 /// @nodoc
-class __$UserAvailableCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
-    implements _$UserAvailableCopyWith<$Res> {
-  __$UserAvailableCopyWithImpl(
-      _UserAvailable _value, $Res Function(_UserAvailable) _then)
-      : super(_value, (v) => _then(v as _UserAvailable));
+class _$LoadScreenCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
+    implements $LoadScreenCopyWith<$Res> {
+  _$LoadScreenCopyWithImpl(LoadScreen _value, $Res Function(LoadScreen) _then)
+      : super(_value, (v) => _then(v as LoadScreen));
 
   @override
-  _UserAvailable get _value => super._value as _UserAvailable;
+  LoadScreen get _value => super._value as LoadScreen;
+
+  @override
+  $Res call({
+    Object? tabIndex = freezed,
+    Object? tabs = freezed,
+  }) {
+    return _then(LoadScreen(
+      tabIndex == freezed
+          ? _value.tabIndex
+          : tabIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      tabs == freezed
+          ? _value.tabs
+          : tabs // ignore: cast_nullable_to_non_nullable
+              as List<ViewItem>,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_UserAvailable implements _UserAvailable {
-  const _$_UserAvailable();
+class _$LoadScreen implements LoadScreen {
+  const _$LoadScreen(this.tabIndex, this.tabs);
+
+  @override
+  final int tabIndex;
+  @override
+  final List<ViewItem> tabs;
 
   @override
   String toString() {
-    return 'AppState.userAvailable()';
+    return 'AppState.loadScreen(tabIndex: $tabIndex, tabs: $tabs)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _UserAvailable);
+    return identical(this, other) ||
+        (other is LoadScreen &&
+            (identical(other.tabIndex, tabIndex) ||
+                const DeepCollectionEquality()
+                    .equals(other.tabIndex, tabIndex)) &&
+            (identical(other.tabs, tabs) ||
+                const DeepCollectionEquality().equals(other.tabs, tabs)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(tabIndex) ^
+      const DeepCollectionEquality().hash(tabs);
+
+  @JsonKey(ignore: true)
+  @override
+  $LoadScreenCopyWith<LoadScreen> get copyWith =>
+      _$LoadScreenCopyWithImpl<LoadScreen>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() userAvailable,
-    required TResult Function() userNotAvailable,
+    required TResult Function(int tabIndex, List<ViewItem> tabs) loadScreen,
   }) {
-    return userAvailable();
+    return loadScreen(tabIndex, tabs);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? userAvailable,
-    TResult Function()? userNotAvailable,
+    TResult Function(int tabIndex, List<ViewItem> tabs)? loadScreen,
     required TResult orElse(),
   }) {
-    if (userAvailable != null) {
-      return userAvailable();
+    if (loadScreen != null) {
+      return loadScreen(tabIndex, tabs);
     }
     return orElse();
   }
@@ -231,117 +256,32 @@ class _$_UserAvailable implements _UserAvailable {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_UserAvailable value) userAvailable,
-    required TResult Function(_UserNotAvailable value) userNotAvailable,
+    required TResult Function(Initial value) initial,
+    required TResult Function(LoadScreen value) loadScreen,
   }) {
-    return userAvailable(this);
+    return loadScreen(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_UserAvailable value)? userAvailable,
-    TResult Function(_UserNotAvailable value)? userNotAvailable,
+    TResult Function(Initial value)? initial,
+    TResult Function(LoadScreen value)? loadScreen,
     required TResult orElse(),
   }) {
-    if (userAvailable != null) {
-      return userAvailable(this);
+    if (loadScreen != null) {
+      return loadScreen(this);
     }
     return orElse();
   }
 }
 
-abstract class _UserAvailable implements AppState {
-  const factory _UserAvailable() = _$_UserAvailable;
-}
+abstract class LoadScreen implements AppState {
+  const factory LoadScreen(int tabIndex, List<ViewItem> tabs) = _$LoadScreen;
 
-/// @nodoc
-abstract class _$UserNotAvailableCopyWith<$Res> {
-  factory _$UserNotAvailableCopyWith(
-          _UserNotAvailable value, $Res Function(_UserNotAvailable) then) =
-      __$UserNotAvailableCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$UserNotAvailableCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
-    implements _$UserNotAvailableCopyWith<$Res> {
-  __$UserNotAvailableCopyWithImpl(
-      _UserNotAvailable _value, $Res Function(_UserNotAvailable) _then)
-      : super(_value, (v) => _then(v as _UserNotAvailable));
-
-  @override
-  _UserNotAvailable get _value => super._value as _UserNotAvailable;
-}
-
-/// @nodoc
-
-class _$_UserNotAvailable implements _UserNotAvailable {
-  const _$_UserNotAvailable();
-
-  @override
-  String toString() {
-    return 'AppState.userNotAvailable()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _UserNotAvailable);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() userAvailable,
-    required TResult Function() userNotAvailable,
-  }) {
-    return userNotAvailable();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? userAvailable,
-    TResult Function()? userNotAvailable,
-    required TResult orElse(),
-  }) {
-    if (userNotAvailable != null) {
-      return userNotAvailable();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_UserAvailable value) userAvailable,
-    required TResult Function(_UserNotAvailable value) userNotAvailable,
-  }) {
-    return userNotAvailable(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_UserAvailable value)? userAvailable,
-    TResult Function(_UserNotAvailable value)? userNotAvailable,
-    required TResult orElse(),
-  }) {
-    if (userNotAvailable != null) {
-      return userNotAvailable(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UserNotAvailable implements AppState {
-  const factory _UserNotAvailable() = _$_UserNotAvailable;
+  int get tabIndex => throw _privateConstructorUsedError;
+  List<ViewItem> get tabs => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LoadScreenCopyWith<LoadScreen> get copyWith =>
+      throw _privateConstructorUsedError;
 }

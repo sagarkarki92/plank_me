@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plank_me/data/models/plank_info.dart';
 import 'package:plank_me/presentation/plank_records/cubit/plankrecord_cubit.dart';
+import './widgets/widgets.dart';
 
 class PlankRecordScreen extends StatelessWidget {
   @override
@@ -9,8 +10,7 @@ class PlankRecordScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => PlankrecordCubit()..getAllRecords(),
       child: Scaffold(
-        appBar: AppBar(title: Text('ENd')),
-        body: PlankRecordBody(),
+        body: const PlankRecordBody(),
       ),
     );
   }
@@ -28,8 +28,7 @@ class PlankRecordBody extends StatelessWidget {
         return state.when(
             initial: () => _buildInitial(),
             loading: () => _buildLoading(),
-            complete: (totalMinutes, records) =>
-                _buildComplete(totalMinutes, records),
+            complete: (____, ___, _____, _, __) => const ProgressView(),
             error: () => _buildError());
       },
     );
@@ -43,13 +42,9 @@ class PlankRecordBody extends StatelessWidget {
     return const CircularProgressIndicator();
   }
 
-  Widget _buildComplete(String? totalMinutes, List<PlankInfo>? records) {
-    return Center(
-      child: Text('you planked $totalMinutes'),
-    );
-  }
-
   Widget _buildError() {
-    return const Text('This is error');
+    return const Center(
+      child: Text('No Planks yet!'),
+    );
   }
 }

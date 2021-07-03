@@ -1,11 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plank_me/presentation/timer/myplank_cubit/myplank_cubit.dart';
 import 'package:plank_me/presentation/timer/plank_timer/timer_cubit.dart';
-import 'package:plank_me/presentation/timer/ui/widgets/timer_widgets.dart';
-
-
+import 'package:plank_me/presentation/timer/ui/widgets/timer_section.dart';
+import 'package:plank_me/presentation/timer/ui/widgets/ui_section.dart';
+import '../../ui_utils/ui_styles.dart';
 import 'timer_end_screen.dart';
 
 class TimerScreen extends StatelessWidget {
@@ -20,8 +19,10 @@ class TimerScreen extends StatelessWidget {
           ),
         ),
       ],
-      child: const Scaffold(
-        body: TimerScreenBody(),
+      child: const SafeArea(
+        child: Scaffold(
+          body: TimerScreenBody(),
+        ),
       ),
     );
   }
@@ -34,31 +35,29 @@ class TimerScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener(
-      bloc: BlocProvider.of<MyplankCubit>(context),
+    return BlocListener<MyplankCubit, MyplankState>(
       listener: (context, state) {
-        if (state is Success) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (_) => TimerEndScreen(),
-            ),
-          );
-        }
+        state.maybeWhen(
+            success: () =>
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (_) => TimerEndScreen(),
+                )),
+            orElse: () {});
       },
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('Hello ${context.read<MyplankCubit>().userName}'),
-            const SizedBox(height: 8.0),
-            Text(
-                'Time to beat ${context.watch<MyplankCubit>().personBest}'),
-            const SizedBox(height: 8.0),
-            PlankTimer(),
-            Button(),
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            flex: 6,
+            child: UiSection(),
+          ),
+          Expanded(
+            flex: 4,
+            child: TimerSection(),
+          )
+        ],
       ),
     );
   }
 }
+

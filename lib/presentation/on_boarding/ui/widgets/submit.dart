@@ -16,7 +16,7 @@ class Submit extends StatelessWidget {
         if (state is Success) {
           locator<AppNavigator>().navigatorKey.currentState!.pushReplacement(
                 MaterialPageRoute(
-                  builder: (_) => TimerScreen(),
+                  builder: (_) => MainScreen(),
                 ),
               );
         }
