@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:plank_me/core/utils/time_utils.dart';
+import 'package:plank_me/data/models/user.dart';
 import 'package:plank_me/presentation/app/app_service/base_cubit.dart';
 import 'package:plank_me/presentation/timer/myplank_cubit/myplank_cubit.dart';
 
@@ -16,6 +17,8 @@ class TimerCubit extends BaseCubit<TimerState> {
   String completedAt = '0 Minutes 0 seconds';
 
   TimerCubit(this._myplankCubit) : super(const TimerState.initial('00 : 00'));
+
+  User get user => _myplankCubit.user;
 
   void startPlankWatch() {
     stopwatch = Stopwatch()..start();

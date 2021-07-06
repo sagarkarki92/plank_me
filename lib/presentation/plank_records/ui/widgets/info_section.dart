@@ -33,6 +33,12 @@ class _InfoSectionState extends State<InfoSection>
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<PlankrecordCubit, PlankrecordState>(
       builder: (context, state) {

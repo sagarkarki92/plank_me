@@ -12,7 +12,8 @@ class TimerSection extends StatelessWidget {
       child: Material(
         color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.circular(24.0),
-        elevation: 24.0,
+        elevation: 100.0,
+        shadowColor: AppColors.primary,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
