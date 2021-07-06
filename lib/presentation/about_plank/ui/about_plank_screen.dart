@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plank_me/presentation/ui_utils/ui_styles.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
 class AboutPlankScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
