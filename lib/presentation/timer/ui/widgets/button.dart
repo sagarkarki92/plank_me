@@ -11,15 +11,16 @@ class Button extends StatelessWidget {
       listener: (context, state) {
         state.maybeWhen(
             stop: (timerValue, completedTime) => showDialog(
-                  context: context,
+                  context: contextc,
                   barrierDismissible: false,
-                  builder: (_) => _TimerDialog(
-                      completedTime: completedTime,
-                      timerValue: timerValue,
-                      onDismiss: () {
-                        context.read<TimerCubit>().resetPlankWatch();
-                        Navigator.of(context).pop();
-                      }),
+                  useRootNavigator: false,
+                  builder: (_) => BlocProvider.value(
+                    value: context.watch<TimerCubit>(),
+                    child: _TimerDialog(
+                        completedTime: completedTime,
+                        timerValue: timerValue,
+                        onDismiss: () => Navigator.of(context).pop()),
+                  ),
                 ),
             orElse: () {});
       },
@@ -73,10 +74,13 @@ class _TimerDialog extends StatelessWidget {
                 child: const Text('Done for today'),
                 onPressed: () {
                   context.read<TimerCubit>().donePlanking();
-                  Navigator.pop(context);
+                  onDismiss();
                 }),
             TextButton(
-              onPressed: () => onDismiss(),
+              onPressed: () {
+                context.read<TimerCubit>().resetPlankWatch();
+                onDismiss();
+              },
               child: const Text('Reset'),
             )
           ],

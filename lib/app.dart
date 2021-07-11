@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plank_me/core/configs.dart';
-import 'package:plank_me/core/service_locator.dart';
-import 'package:plank_me/presentation/app/cubit/app_cubit.dart';
-import 'package:plank_me/presentation/app/ui/main_screen.dart';
-import 'package:plank_me/presentation/screens.dart';
-import 'package:plank_me/presentation/ui_utils/app_theme.dart';
 
+import 'core/configs.dart';
+import 'core/service_locator.dart';
 import 'presentation/app/app_service/app_navigator.dart';
+import 'presentation/app/cubit/app_cubit.dart';
+import 'presentation/app/ui/main_screen.dart';
+import 'presentation/screens.dart';
+import 'presentation/ui_utils/app_theme.dart';
 
 class PlankMe extends StatelessWidget {
   @override

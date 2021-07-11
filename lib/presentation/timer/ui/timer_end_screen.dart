@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plank_me/presentation/timer/ui/widgets/timer_widgets.dart';
+import 'package:plank_me/data/models/user.dart';
 
 import '../cubit/timerend_cubit.dart';
+import 'widgets/timer_widgets.dart';
 
 class TimerEndScreen extends StatelessWidget {
   @override
@@ -10,7 +11,7 @@ class TimerEndScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => TimerendCubit()..init(),
       child: const Scaffold(
-        body: TimerendBody(),
+        body: SafeArea(child: TimerendBody()),
       ),
     );
   }
@@ -27,11 +28,15 @@ class TimerendBody extends StatelessWidget {
       bloc: BlocProvider.of<TimerendCubit>(context),
       builder: (context, state) => state.when(
         initial: () => Container(),
-        newBestScore: (String username, int timeInSeconds) =>
+        newBestScore: (User user, int timeInSeconds) =>
             FinishPlankWithNewBest(
-                username: username, plankSeconds: timeInSeconds),
-        ordinaryScore: (String username, int timeInSeconds) =>
-            FinishPlanking(username: username, plankSeconds: timeInSeconds),
+          user: user,
+          plankSeconds: timeInSeconds,
+        ),
+        ordinaryScore: (User user, int timeInSeconds) => FinishPlanking(
+          user:user,
+          plankSeconds: timeInSeconds,
+        ),
         finish: () => Container(),
       ),
     );

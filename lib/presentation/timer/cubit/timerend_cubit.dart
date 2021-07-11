@@ -30,9 +30,9 @@ class TimerendCubit extends Cubit<TimerendState> {
 
     if (plankedTime > planktimeRepository.getPersonalBestTime()) {
       planktimeRepository.setPersonalBestTime(plankedTime);
-      emit(NewBestScore(user.name!, plankedTime));
+      emit(NewBestScore(user, plankedTime));
     } else {
-      emit(OrdinaryScore(user.name!, plankedTime));
+      emit(OrdinaryScore(user, plankedTime));
     }
   }
 

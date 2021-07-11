@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:plank_me/data/models/user.dart';
 import 'package:plank_me/presentation/timer/ui/widgets/timer_widgets.dart';
 
 class FinishPlankWithNewBest extends StatelessWidget {
-  final String? username;
+  final User user;
   final int? plankSeconds;
 
-  const FinishPlankWithNewBest({Key? key, this.username, this.plankSeconds})
+  const FinishPlankWithNewBest({Key? key, required this.user, this.plankSeconds})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

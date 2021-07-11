@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class SlideAnimation extends StatefulWidget {
@@ -12,7 +11,7 @@ class SlideAnimation extends StatefulWidget {
     this.start = const Offset(1.0, 0),
     this.end = const Offset(0.0, 0.0),
     this.curve = Curves.easeIn,
-    this.duration = const Duration(milliseconds:500),
+    this.duration = const Duration(milliseconds: 500),
     required this.child,
   }) : super(key: key);
 
@@ -28,10 +27,10 @@ class _SlideAnimationState extends State<SlideAnimation>
   @override
   void initState() {
     super.initState();
-    animationController = AnimationController(
-        vsync: this, duration: widget.duration);
-    animation = Tween(begin: widget.start, end: widget.end)
-        .animate(CurvedAnimation(parent: animationController, curve: widget.curve));
+    animationController =
+        AnimationController(vsync: this, duration: widget.duration);
+    animation = Tween(begin: widget.start, end: widget.end).animate(
+        CurvedAnimation(parent: animationController, curve: widget.curve));
 
     animationController.forward();
   }
@@ -46,6 +45,56 @@ class _SlideAnimationState extends State<SlideAnimation>
   Widget build(BuildContext context) {
     return SlideTransition(
       position: animation,
+      child: widget.child,
+    );
+  }
+}
+
+class ScaleAnimation extends StatefulWidget {
+  final Curve curve;
+  final Duration duration;
+  final Widget child;
+  const ScaleAnimation(
+      {Key? key,
+      required this.child,
+      this.curve = Curves.linear,
+      this.duration = const Duration(
+        milliseconds: 500,
+      )})
+      : super(key: key);
+
+  @override
+  _ScaleAnimationState createState() => _ScaleAnimationState();
+}
+
+class _ScaleAnimationState extends State<ScaleAnimation>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController animationController;
+  late Animation<double> animation;
+  @override
+  void initState() {
+    super.initState();
+    animationController = AnimationController(
+      vsync: this,
+      duration: widget.duration,
+    );
+    animation = CurvedAnimation(
+      curve: widget.curve,
+      parent: animationController,
+    );
+    animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaleTransition(
+      scale: animationController,
       child: widget.child,
     );
   }

@@ -6,7 +6,7 @@ class ScheduleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      child: const Text('Schedule Time'),
+      child: const Text('Schedule Plank'),
       onPressed: () {
         _openTimeScheduler(context);
       },

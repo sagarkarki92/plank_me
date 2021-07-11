@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plank_me/presentation/global_widgets/boy_avatar.dart';
+import 'package:plank_me/presentation/global_widgets/girl_avatar.dart';
 
 import '../../plank_timer/timer_cubit.dart';
 
@@ -21,23 +23,17 @@ class PlankingImage extends StatelessWidget {
 
   Widget _buildStandingImage(BuildContext context) =>
       context.read<TimerCubit>().user.gender == 'male'
-          ? Image.asset(
-              'assets/images/boy_stand.png',
-              key: const ValueKey('boy_stand'),
-            )
-          : Image.asset(
-              'assets/images/girl_stand.png',
-              key: const ValueKey('girl_stand'),
-            );
+          ? const Hero(tag: 'boyAvatar', child: BoyAvatar())
+          : const Hero(tag: 'Avatar', child: GirlAvatar());
 
   Widget _buildPlankingImage(BuildContext context) =>
       context.read<TimerCubit>().user.gender == 'male'
-          ? Image.asset(
-              'assets/images/boy_planking.png',
-              key: const ValueKey('boy_plank'),
+          ? const BoyAvatar(
+              key: ValueKey('boy_plank'),
+              isPlanking: true,
             )
-          : Image.asset(
-              'assets/images/girl_planking.png',
-              key: const ValueKey('girl_plank'),
+          : const GirlAvatar(
+              key: ValueKey('girl_plank'),
+              isPlanking: true,
             );
 }
