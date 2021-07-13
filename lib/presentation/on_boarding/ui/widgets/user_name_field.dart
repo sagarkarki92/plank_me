@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plank_me/presentation/on_boarding/cubits/username_cubit/usernamefield_cubit.dart';
+import 'package:plank_me/presentation/ui_utils/ui_styles.dart';
 
 class UsernameField extends StatefulWidget {
   @override
@@ -33,11 +34,16 @@ class _UsernameFieldState extends State<UsernameField> {
     return BlocBuilder<UsernamefieldCubit, UsernamefieldState>(
         builder: (context, state) => state.when(
               initial: () => _buildField(),
-              userChecking: () =>
-                  _buildField(trailing: const CircularProgressIndicator()),
+              userChecking: () => _buildField(
+                  trailing: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const CircularProgressIndicator(
+                  strokeWidth: 1.0,
+                ),
+              )),
               invalid: (String errorMessage) => _buildField(
                 trailing: const Icon(
-                  Icons.cancel_rounded,
+                  Icons.close,
                   color: Colors.red,
                 ),
                 color: Colors.red,
@@ -61,13 +67,16 @@ class _UsernameFieldState extends State<UsernameField> {
   }
 
   Widget _buildField(
-      {Color color = Colors.grey,
-      Widget? trailing = const SizedBox.shrink(),
+      {Color color = AppColors.primary,
+      Widget trailing = const SizedBox.shrink(),
       String label = ''}) {
     return TextField(
       decoration: InputDecoration(
           hintText: "User name",
           suffixIcon: trailing,
+          errorBorder: OutlineInputBorder(borderSide: BorderSide(color: color)),
+          focusedBorder:
+              OutlineInputBorder(borderSide: BorderSide(color: color)),
           border: OutlineInputBorder(
             borderSide: BorderSide(
               color: color,
