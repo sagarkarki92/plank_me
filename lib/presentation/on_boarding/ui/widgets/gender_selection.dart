@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plank_me/presentation/global_widgets/boy_avatar.dart';
+import 'package:plank_me/presentation/global_widgets/girl_avatar.dart';
 import 'package:plank_me/presentation/on_boarding/cubits/setupuser_cubit/setupuser_cubit.dart';
+import 'package:plank_me/presentation/ui_utils/ui_styles.dart';
 
 class GenderSelection extends StatelessWidget {
   @override
@@ -11,14 +14,14 @@ class GenderSelection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             GenderItem(
-              label: 'Male',
+              avatar: const BoyAvatar(),
               isSelected:
                   context.read<SetupuserCubit>().userType == UserType.male,
               onChanged: () =>
                   context.read<SetupuserCubit>().setUserGender(UserType.male),
             ),
             GenderItem(
-              label: 'Female',
+              avatar: const GirlAvatar(),
               isSelected:
                   context.read<SetupuserCubit>().userType == UserType.female,
               onChanged: () =>
@@ -32,26 +35,44 @@ class GenderSelection extends StatelessWidget {
 }
 
 class GenderItem extends StatelessWidget {
-  final String? label;
+  final Widget avatar;
   final bool isSelected;
   final VoidCallback? onChanged;
   const GenderItem({
     Key? key,
+    required this.avatar,
     this.onChanged,
-    this.label,
     this.isSelected = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onChanged,
-      child: Text(
-        label!,
-        style: TextStyle(
-          color: isSelected ? Colors.green : Colors.grey,
+    return Column(
+      children: [
+        if (isSelected)
+          const Icon(
+            Icons.check_circle_rounded,
+            color: Colors.green,
+          ),
+        const SizedBox(height: 8.0),
+        GestureDetector(
+          onTap: onChanged,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            decoration: isSelected
+                ? BoxDecoration(
+                    border: Border.all(
+                      color: Colors.green,
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(12.0),
+                  )
+                : const BoxDecoration(),
+            height: isSelected ? 250 : 150,
+            child: avatar,
+          ),
         ),
-      ),
+      ],
     );
   }
 }

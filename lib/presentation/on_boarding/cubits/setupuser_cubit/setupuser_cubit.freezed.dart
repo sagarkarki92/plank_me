@@ -37,6 +37,10 @@ class _$SetupuserStateTearOff {
       userType,
     );
   }
+
+  Focused focused() {
+    return const Focused();
+  }
 }
 
 /// @nodoc
@@ -51,6 +55,7 @@ mixin _$SetupuserState {
     required TResult Function() success,
     required TResult Function() failed,
     required TResult Function(UserType userType) genderChanged,
+    required TResult Function() focused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +65,7 @@ mixin _$SetupuserState {
     TResult Function()? success,
     TResult Function()? failed,
     TResult Function(UserType userType)? genderChanged,
+    TResult Function()? focused,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -70,6 +76,7 @@ mixin _$SetupuserState {
     required TResult Function(Success value) success,
     required TResult Function(Failed value) failed,
     required TResult Function(GenderChanged value) genderChanged,
+    required TResult Function(Focused value) focused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -79,6 +86,7 @@ mixin _$SetupuserState {
     TResult Function(Success value)? success,
     TResult Function(Failed value)? failed,
     TResult Function(GenderChanged value)? genderChanged,
+    TResult Function(Focused value)? focused,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -143,6 +151,7 @@ class _$Initial implements Initial {
     required TResult Function() success,
     required TResult Function() failed,
     required TResult Function(UserType userType) genderChanged,
+    required TResult Function() focused,
   }) {
     return initial();
   }
@@ -155,6 +164,7 @@ class _$Initial implements Initial {
     TResult Function()? success,
     TResult Function()? failed,
     TResult Function(UserType userType)? genderChanged,
+    TResult Function()? focused,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -171,6 +181,7 @@ class _$Initial implements Initial {
     required TResult Function(Success value) success,
     required TResult Function(Failed value) failed,
     required TResult Function(GenderChanged value) genderChanged,
+    required TResult Function(Focused value) focused,
   }) {
     return initial(this);
   }
@@ -183,6 +194,7 @@ class _$Initial implements Initial {
     TResult Function(Success value)? success,
     TResult Function(Failed value)? failed,
     TResult Function(GenderChanged value)? genderChanged,
+    TResult Function(Focused value)? focused,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -238,6 +250,7 @@ class _$Loading implements Loading {
     required TResult Function() success,
     required TResult Function() failed,
     required TResult Function(UserType userType) genderChanged,
+    required TResult Function() focused,
   }) {
     return loading();
   }
@@ -250,6 +263,7 @@ class _$Loading implements Loading {
     TResult Function()? success,
     TResult Function()? failed,
     TResult Function(UserType userType)? genderChanged,
+    TResult Function()? focused,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -266,6 +280,7 @@ class _$Loading implements Loading {
     required TResult Function(Success value) success,
     required TResult Function(Failed value) failed,
     required TResult Function(GenderChanged value) genderChanged,
+    required TResult Function(Focused value) focused,
   }) {
     return loading(this);
   }
@@ -278,6 +293,7 @@ class _$Loading implements Loading {
     TResult Function(Success value)? success,
     TResult Function(Failed value)? failed,
     TResult Function(GenderChanged value)? genderChanged,
+    TResult Function(Focused value)? focused,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -333,6 +349,7 @@ class _$Success implements Success {
     required TResult Function() success,
     required TResult Function() failed,
     required TResult Function(UserType userType) genderChanged,
+    required TResult Function() focused,
   }) {
     return success();
   }
@@ -345,6 +362,7 @@ class _$Success implements Success {
     TResult Function()? success,
     TResult Function()? failed,
     TResult Function(UserType userType)? genderChanged,
+    TResult Function()? focused,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -361,6 +379,7 @@ class _$Success implements Success {
     required TResult Function(Success value) success,
     required TResult Function(Failed value) failed,
     required TResult Function(GenderChanged value) genderChanged,
+    required TResult Function(Focused value) focused,
   }) {
     return success(this);
   }
@@ -373,6 +392,7 @@ class _$Success implements Success {
     TResult Function(Success value)? success,
     TResult Function(Failed value)? failed,
     TResult Function(GenderChanged value)? genderChanged,
+    TResult Function(Focused value)? focused,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -428,6 +448,7 @@ class _$Failed implements Failed {
     required TResult Function() success,
     required TResult Function() failed,
     required TResult Function(UserType userType) genderChanged,
+    required TResult Function() focused,
   }) {
     return failed();
   }
@@ -440,6 +461,7 @@ class _$Failed implements Failed {
     TResult Function()? success,
     TResult Function()? failed,
     TResult Function(UserType userType)? genderChanged,
+    TResult Function()? focused,
     required TResult orElse(),
   }) {
     if (failed != null) {
@@ -456,6 +478,7 @@ class _$Failed implements Failed {
     required TResult Function(Success value) success,
     required TResult Function(Failed value) failed,
     required TResult Function(GenderChanged value) genderChanged,
+    required TResult Function(Focused value) focused,
   }) {
     return failed(this);
   }
@@ -468,6 +491,7 @@ class _$Failed implements Failed {
     TResult Function(Success value)? success,
     TResult Function(Failed value)? failed,
     TResult Function(GenderChanged value)? genderChanged,
+    TResult Function(Focused value)? focused,
     required TResult orElse(),
   }) {
     if (failed != null) {
@@ -552,6 +576,7 @@ class _$GenderChanged implements GenderChanged {
     required TResult Function() success,
     required TResult Function() failed,
     required TResult Function(UserType userType) genderChanged,
+    required TResult Function() focused,
   }) {
     return genderChanged(userType);
   }
@@ -564,6 +589,7 @@ class _$GenderChanged implements GenderChanged {
     TResult Function()? success,
     TResult Function()? failed,
     TResult Function(UserType userType)? genderChanged,
+    TResult Function()? focused,
     required TResult orElse(),
   }) {
     if (genderChanged != null) {
@@ -580,6 +606,7 @@ class _$GenderChanged implements GenderChanged {
     required TResult Function(Success value) success,
     required TResult Function(Failed value) failed,
     required TResult Function(GenderChanged value) genderChanged,
+    required TResult Function(Focused value) focused,
   }) {
     return genderChanged(this);
   }
@@ -592,6 +619,7 @@ class _$GenderChanged implements GenderChanged {
     TResult Function(Success value)? success,
     TResult Function(Failed value)? failed,
     TResult Function(GenderChanged value)? genderChanged,
+    TResult Function(Focused value)? focused,
     required TResult orElse(),
   }) {
     if (genderChanged != null) {
@@ -608,4 +636,103 @@ abstract class GenderChanged implements SetupuserState {
   @JsonKey(ignore: true)
   $GenderChangedCopyWith<GenderChanged> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FocusedCopyWith<$Res> {
+  factory $FocusedCopyWith(Focused value, $Res Function(Focused) then) =
+      _$FocusedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$FocusedCopyWithImpl<$Res> extends _$SetupuserStateCopyWithImpl<$Res>
+    implements $FocusedCopyWith<$Res> {
+  _$FocusedCopyWithImpl(Focused _value, $Res Function(Focused) _then)
+      : super(_value, (v) => _then(v as Focused));
+
+  @override
+  Focused get _value => super._value as Focused;
+}
+
+/// @nodoc
+
+class _$Focused implements Focused {
+  const _$Focused();
+
+  @override
+  String toString() {
+    return 'SetupuserState.focused()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Focused);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function() failed,
+    required TResult Function(UserType userType) genderChanged,
+    required TResult Function() focused,
+  }) {
+    return focused();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function()? failed,
+    TResult Function(UserType userType)? genderChanged,
+    TResult Function()? focused,
+    required TResult orElse(),
+  }) {
+    if (focused != null) {
+      return focused();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Success value) success,
+    required TResult Function(Failed value) failed,
+    required TResult Function(GenderChanged value) genderChanged,
+    required TResult Function(Focused value) focused,
+  }) {
+    return focused(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? success,
+    TResult Function(Failed value)? failed,
+    TResult Function(GenderChanged value)? genderChanged,
+    TResult Function(Focused value)? focused,
+    required TResult orElse(),
+  }) {
+    if (focused != null) {
+      return focused(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Focused implements SetupuserState {
+  const factory Focused() = _$Focused;
 }

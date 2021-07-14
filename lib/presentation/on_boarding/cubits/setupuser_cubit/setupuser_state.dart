@@ -7,5 +7,6 @@ abstract class SetupuserState with _$SetupuserState {
   const factory SetupuserState.success() = Success;
   const factory SetupuserState.failed() = Failed;
   const factory SetupuserState.genderChanged(UserType userType) = GenderChanged;
+  const factory SetupuserState.focused() = Focused;
 
 }

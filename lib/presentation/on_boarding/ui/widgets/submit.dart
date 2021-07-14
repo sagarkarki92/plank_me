@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plank_me/core/service_locator.dart';
-import 'package:plank_me/presentation/app/app_service/app_navigator.dart';
-import 'package:plank_me/presentation/on_boarding/cubits/setupuser_cubit/setupuser_cubit.dart';
-import 'package:plank_me/presentation/on_boarding/cubits/username_cubit/usernamefield_cubit.dart';
-import '../.././../ui_utils/ui_styles.dart';
+
+import '../../../../core/service_locator.dart';
+import '../../../app/app_service/app_navigator.dart';
 import '../../../screens.dart';
+import '../.././../ui_utils/ui_styles.dart';
+import '../../cubits/setupuser_cubit/setupuser_cubit.dart';
+import '../../cubits/username_cubit/usernamefield_cubit.dart';
 
 class Submit extends StatelessWidget {
   @override
@@ -45,7 +46,7 @@ class _StartButton extends StatelessWidget {
           decoration: BoxDecoration(
               color: state is UserAvailable
                   ? context.theme.accentColor
-                  : context.theme.accentColor.withOpacity(0.5),
+                  : context.theme.accentColor.withOpacity(0.2),
               borderRadius: BorderRadius.circular(12.0),),
           child: Center(
             child: Text(

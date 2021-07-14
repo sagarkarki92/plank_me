@@ -44,7 +44,10 @@ class __OnBoardingScreenBodyState extends State<_OnBoardingScreenBody> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        const _TitleAndLabel(),
+        const Hero(
+          tag: 'plankMe',
+          child: TitleAndLabel(),
+        ),
         ElevatedButton(
           onPressed: () {
             setState(() {
@@ -52,29 +55,6 @@ class __OnBoardingScreenBodyState extends State<_OnBoardingScreenBody> {
             });
           },
           child: const Text('Set up User'),
-        ),
-      ],
-    );
-  }
-}
-
-class _TitleAndLabel extends StatelessWidget {
-  const _TitleAndLabel({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          'Plank Me',
-          style: context.text.headline3!.withColor(AppColors.light),
-        ),
-        const SizedBox(height: 12.0),
-        Text(
-          '"Plank daily and be supper fit" - sagar92',
-          style: context.text.headline6!.withColor(
-            AppColors.light,
-          ),
         ),
       ],
     );

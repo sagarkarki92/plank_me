@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../ui_utils/ui_styles.dart';
 import '../../cubits/setupuser_cubit/setupuser_cubit.dart';
 import '../../cubits/username_cubit/usernamefield_cubit.dart';
-import 'gender_selection.dart';
 import 'submit.dart';
 import 'user_name_field.dart';
-import '../../../ui_utils/ui_styles.dart';
 
 class UserInfo extends StatelessWidget {
   @override
@@ -28,7 +27,7 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(12.0),
-      padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.all(24.0),
       decoration: BoxDecoration(
         color: context.theme.scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(12.0),
@@ -37,7 +36,7 @@ class _Body extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           UsernameField(),
-          const SizedBox(height:12.0),
+          const SizedBox(height:24.0),
           Submit(),
         ],
       ),

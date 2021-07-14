@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plank_me/presentation/on_boarding/cubits/setupuser_cubit/setupuser_cubit.dart';
 import 'package:plank_me/presentation/on_boarding/cubits/username_cubit/usernamefield_cubit.dart';
 import 'package:plank_me/presentation/ui_utils/ui_styles.dart';
 
@@ -12,10 +13,19 @@ class UsernameField extends StatefulWidget {
 
 class _UsernameFieldState extends State<UsernameField> {
   Timer? timer;
+  late FocusNode focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    focusNode = FocusNode();
+
+  }
 
   @override
   void dispose() {
     timer?.cancel();
+    focusNode.dispose();
     super.dispose();
   }
 
@@ -71,6 +81,7 @@ class _UsernameFieldState extends State<UsernameField> {
       Widget trailing = const SizedBox.shrink(),
       String label = ''}) {
     return TextField(
+      focusNode: focusNode,
       decoration: InputDecoration(
           hintText: "User name",
           suffixIcon: trailing,
