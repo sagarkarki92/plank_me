@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plank_me/presentation/on_boarding/cubits/setupuser_cubit/setupuser_cubit.dart';
-import 'package:plank_me/presentation/on_boarding/cubits/username_cubit/usernamefield_cubit.dart';
-import 'package:plank_me/presentation/ui_utils/ui_styles.dart';
+
+import '../../../ui_utils/ui_styles.dart';
+import '../../cubits/username_cubit/usernamefield_cubit.dart';
 
 class UsernameField extends StatefulWidget {
   @override

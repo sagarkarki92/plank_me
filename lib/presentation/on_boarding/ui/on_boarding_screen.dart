@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plank_me/core/service_locator.dart';
-import 'package:plank_me/presentation/app/cubit/app_cubit.dart';
-import 'package:plank_me/presentation/global_widgets/plank_background.dart';
-import 'package:plank_me/presentation/on_boarding/cubits/setupuser_cubit/setupuser_cubit.dart';
-import 'package:plank_me/presentation/on_boarding/ui/widgets/widgets.dart';
-import 'package:plank_me/repositories/user_repository.dart';
-import '../../ui_utils/ui_styles.dart';
+
+import '../../../core/service_locator.dart';
+import '../../../repositories/user_repository.dart';
+import '../../app/cubit/app_cubit.dart';
+import '../../global_widgets/plank_background.dart';
+import '../cubits/setupuser_cubit/setupuser_cubit.dart';
+import 'widgets/widgets.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   @override

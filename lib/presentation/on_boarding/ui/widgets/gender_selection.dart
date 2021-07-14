@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plank_me/presentation/global_widgets/boy_avatar.dart';
-import 'package:plank_me/presentation/global_widgets/girl_avatar.dart';
-import 'package:plank_me/presentation/on_boarding/cubits/setupuser_cubit/setupuser_cubit.dart';
-import 'package:plank_me/presentation/ui_utils/ui_styles.dart';
+
+import '../../../global_widgets/boy_avatar.dart';
+import '../../../global_widgets/girl_avatar.dart';
+import '../../cubits/setupuser_cubit/setupuser_cubit.dart';
 
 class GenderSelection extends StatelessWidget {
   @override

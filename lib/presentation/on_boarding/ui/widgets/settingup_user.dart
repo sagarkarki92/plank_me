@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:plank_me/presentation/on_boarding/ui/widgets/user_info.dart';
-import 'package:plank_me/presentation/on_boarding/ui/widgets/widgets.dart';
-import 'package:plank_me/presentation/ui_utils/ui_styles.dart';
+
+import '../../../ui_utils/ui_styles.dart';
+import 'user_info.dart';
+import 'widgets.dart';
 
 class SettingupUser extends StatelessWidget {
   const SettingupUser({Key? key}) : super(key: key);
