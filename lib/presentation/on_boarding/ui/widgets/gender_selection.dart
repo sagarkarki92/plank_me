@@ -14,7 +14,7 @@ class GenderSelection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             GenderItem(
-              avatar: const BoyAvatar(),
+              avatar: BoyAvatar(),
               isSelected:
                   context.read<SetupuserCubit>().userType == UserType.male,
               onChanged: () =>

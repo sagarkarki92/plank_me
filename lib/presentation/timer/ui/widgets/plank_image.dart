@@ -23,14 +23,14 @@ class PlankingImage extends StatelessWidget {
 
   Widget _buildStandingImage(BuildContext context) =>
       context.read<TimerCubit>().user.gender == 'male'
-          ? const Hero(tag: 'boyAvatar', child: BoyAvatar())
+          ?  Hero(tag: 'boyAvatar', child: BoyAvatar())
           : const Hero(tag: 'Avatar', child: GirlAvatar());
 
   Widget _buildPlankingImage(BuildContext context) =>
       context.read<TimerCubit>().user.gender == 'male'
-          ? const BoyAvatar(
-              key: ValueKey('boy_plank'),
-              isPlanking: true,
+          ?  BoyAvatar.planking(
+              key: const ValueKey('boy_plank'),
+            
             )
           : const GirlAvatar(
               key: ValueKey('girl_plank'),

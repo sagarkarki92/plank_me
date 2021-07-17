@@ -34,7 +34,7 @@ class FinishPlanking extends StatelessWidget {
           Expanded(
               flex: 4,
               child: user.gender! == 'male'
-                  ? const Hero(
+                  ? Hero(
                       tag: 'boyAvatar',
                       child: BoyAvatar(),
                     )
@@ -55,7 +55,7 @@ class FinishPlanking extends StatelessWidget {
             flex: 2,
             child: SlideAnimation(
               start: Offset(0.0, 1.0),
-              child: _FinishButtons(),
+              child: ButtonSection(),
             ),
           ),
         ],
@@ -97,23 +97,6 @@ class _LabelText extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class _FinishButtons extends StatelessWidget {
-  const _FinishButtons({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ScheduleButton(),
-        const SizedBox(width: 12.0),
-        FinishButton(),
-        const SizedBox(width: 16.0),
-      ],
     );
   }
 }

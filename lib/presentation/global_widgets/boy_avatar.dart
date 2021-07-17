@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 
 class BoyAvatar extends StatelessWidget {
-  final bool isPlanking;
-  const BoyAvatar({
+  late final String pathUrl;
+  BoyAvatar({
     Key? key,
-    this.isPlanking = false,
-  }) : super(key: key);
+  }) : super(key: key) {
+    pathUrl = 'assets/images/boy_stand.png';
+  }
 
   @override
   Widget build(BuildContext context) {
-    return isPlanking
-        ? Image.asset('assets/images/boy_planking.png')
-        : Image.asset('assets/images/boy_stand.png');
+    return Image.asset(pathUrl);
+  }
+
+  BoyAvatar.muscleUp({Key? key}) : super(key: key) {
+    pathUrl = 'assets/images/boy_muscle_up.png';
+  }
+
+  BoyAvatar.planking({Key? key}) : super(key: key) {
+    pathUrl = 'assets/images/boy_planking.png';
   }
 }
