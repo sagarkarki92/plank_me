@@ -90,12 +90,18 @@ class _DrawerItem extends StatelessWidget {
         duration: const Duration(milliseconds: 1000),
         padding: const EdgeInsets.symmetric(vertical: 12.0),
         decoration: BoxDecoration(
-          color: AppColors.background,
-          border: Border.all(
-            color: AppColors.primary,
-          ),
-          borderRadius: BorderRadius.circular(12.0),
-        ),
+            color: AppColors.background,
+            border: Border.all(
+              color: AppColors.primary,
+            ),
+            borderRadius: BorderRadius.circular(12.0),
+            boxShadow: const [
+              BoxShadow(
+                color: AppColors.primary,
+                blurRadius: 16.0,
+                offset: Offset(0.0, 0.4),
+              )
+            ]),
         child: Column(
           children: [
             FaIcon(
@@ -138,14 +144,9 @@ class _ActiveDrawerItem extends StatelessWidget {
         duration: const Duration(milliseconds: 1000),
         padding: const EdgeInsets.symmetric(vertical: 12.0),
         decoration: BoxDecoration(
-            color: AppColors.primary,
-            borderRadius: BorderRadius.circular(12.0),
-            boxShadow: const [
-              BoxShadow(
-                  color: AppColors.primary,
-                  blurRadius: 12.0,
-                  offset: Offset(0.0, 4.0))
-            ]),
+          color: AppColors.primary,
+          borderRadius: BorderRadius.circular(12.0),
+        ),
         child: Column(
           children: [
             FaIcon(
