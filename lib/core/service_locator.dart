@@ -14,7 +14,7 @@ Future<void> locatorInit() async {
   //locator.registerLazySingleton<LocalStorage>(() => LocalStorage()..init());
   locator.registerLazySingleton<UserRepository>(() => UserService());
   locator.registerLazySingleton<PlanktimeRepository>(() => PlankService());
-  locator.registerLazySingleton(() => LocalNotificationService()..init());
   locator.registerLazySingleton(() => TimeService(locator()));
+  locator.registerSingleton(LocalNotificationService());
   await locator.allReady();
 }

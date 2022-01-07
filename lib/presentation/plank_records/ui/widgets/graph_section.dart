@@ -1,12 +1,7 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plank_me/core/utils/time_utils.dart';
-import 'package:plank_me/presentation/plank_records/cubit/plankrecord_cubit.dart';
-import 'package:plank_me/presentation/plank_records/ui/widgets/graph_item.dart';
-import 'package:plank_me/presentation/plank_records/ui/widgets/widgets.dart';
 
 import '../../../ui_utils/ui_styles.dart';
+import 'widgets.dart';
 
 class GraphSection extends StatelessWidget {
   const GraphSection({

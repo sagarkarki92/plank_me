@@ -41,12 +41,23 @@ class _RecordGraphState extends State<RecordGraph> {
               controller: _scrollController,
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              itemCount: records.length,
+              itemCount: records.length + 2,
               separatorBuilder: (context, index) => const SizedBox(width: 22.0),
-              itemBuilder: (context, index) => GraphItem(
-                record: records[index],
-                totalTime: plankBest,
-              ),
+              itemBuilder: (context, index) {
+                if (index == 0) {
+                  return const SizedBox(
+                    width: 4.0,
+                  );
+                } else if (index == records.length + 1) {
+                  return const SizedBox(
+                    width: 4.0,
+                  );
+                }
+                return GraphItem(
+                  record: records[index - 1],
+                  totalTime: plankBest,
+                );
+              },
             ),
           ),
         );

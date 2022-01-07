@@ -6,6 +6,10 @@ import 'package:timezone/timezone.dart' as tz;
 class LocalNotificationService {
   final plugin = FlutterLocalNotificationsPlugin();
 
+  LocalNotificationService() {
+    init();
+  }
+
   Future<void> init() async {
     final initializationSettings = InitializationSettings(
       android: _getAndroidSettings(),

@@ -8,13 +8,14 @@ import 'package:plank_me/core/service_locator.dart';
 import 'data/services/local_storage_service.dart';
 import 'presentation/app/cubit/app_cubit.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox(StorageKeys.userDetails);
   await Hive.openBox(StorageKeys.plankInformation);
   await Hive.openBox(StorageKeys.plankRecords);
   await Hive.openBox(StorageKeys.time);
+
   locatorInit();
   runApp(BlocProvider(
     create: (_) => AppCubit(),
