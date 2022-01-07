@@ -7,20 +7,27 @@ import 'presentation/app/app_service/app_navigator.dart';
 import 'presentation/app/cubit/app_cubit.dart';
 import 'presentation/app/ui/main_screen.dart';
 import 'presentation/screens.dart';
+import 'presentation/setting/cubit/setting_cubit.dart';
 import 'presentation/ui_utils/app_theme.dart';
+import 'repositories/user_repository.dart';
 
 class PlankMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      navigatorKey: locator<AppNavigator>().navigatorKey,
-      debugShowCheckedModeBanner: false,
-      title: AppConfig.appName,
-      theme: AppTheme.light(),
-      onGenerateRoute: Routes.handler,
-      home: context.read<AppCubit>().isSessionAvailable()
-          ? _buildHomeScreen(context)
-          : OnBoardingScreen(),
+    return BlocProvider(
+      create: (context) =>
+          SettingCubit(userRepository: locator<UserRepository>())
+            ..getSettingsData(),
+      child: MaterialApp(
+        navigatorKey: locator<AppNavigator>().navigatorKey,
+        debugShowCheckedModeBanner: false,
+        title: AppConfig.appName,
+        theme: AppTheme.light(),
+        onGenerateRoute: Routes.handler,
+        home: context.read<AppCubit>().isSessionAvailable()
+            ? _buildHomeScreen(context)
+            : OnBoardingScreen(),
+      ),
     );
   }
 

@@ -22,7 +22,7 @@ class ViewItem {
 final List<ViewItem> _viewItems = [
   ViewItem(
     'Timer',
-    FontAwesomeIcons.stopwatch
+    FontAwesomeIcons.stopwatch,
   ),
   ViewItem(
     'My Progress',
